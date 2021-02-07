@@ -32,11 +32,15 @@ public class Recursion
   }
   public static double sqrt(double n)
   {
+    if (n == 0)
+    {
+      return 0.0;
+    }
     return sqrt(n, 1);
   }
   public static double sqrt(double n, double guess)
   {
-    if ( ((n - (guess*guess)) / (n)) * 100 <= 0.00001 )
+    if ( (Math.abs((n - (guess*guess))) / (n)) * 100 <= 0.00001 )
     {
       return guess;
     }
