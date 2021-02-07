@@ -6,5 +6,9 @@ public class Recursion
     {
       return s;
     }
+    else
+    {
+      return s.charAt(s.length()-1) + reverse(s.substring(0,s.length()-1));
+    }
   }
 }
