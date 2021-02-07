@@ -29,6 +29,5 @@ public class RecursionTesterRD
     System.out.println(Recursion.sqrt(20.25) + " should be 4.5");
     System.out.println(Recursion.sqrt(0.43) + " should be 0.6557");
     System.out.println(Recursion.sqrt(0.7) + " should be 0.836");
-    
   }
 }
