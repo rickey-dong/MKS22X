@@ -30,4 +30,8 @@ public class Recursion
       return count;
     }
   }
+  public static double sqrt(double n)
+  {
+    return sqrt(double n, double guess);
+  }
 }
