@@ -50,4 +50,30 @@ public class QueenBoard
       return false;                      
     }
   }
+  private void removeQueen(int row, int col)
+  {
+    board[row][col] = 0;                     // spot now is empty
+    int columnRay = col+1;
+    int rowRay = row-1;
+    while (columnRay < board[0].length)
+    {
+      board[row][columnRay] -= 1;                // removing death ray of queen to the right
+      columnRay++;
+    }
+    columnRay = col+1;
+    while (columnRay < board[0].length && rowRay >= 0)
+    {
+      board[rowRay][columnRay] -= 1;
+      rowRay--;
+      columnRay++;                              // removing death ray of queen to top right
+    }
+    columnRay = col+1;
+    rowRay = row+1;
+    while (columnRay < board[0].length && rowRay < board[0].length)
+    {
+      board[rowRay][columnRay] -= 1;
+      rowRay++;
+      columnRay++;                              // removing death ray of queen to bottom right
+    }
+  }
 }
