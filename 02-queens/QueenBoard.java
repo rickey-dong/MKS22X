@@ -14,6 +14,10 @@ public class QueenBoard
   }
   private boolean addQueen(int row, int col)              
   {
+    if ( (row < 0 || row >= board[0].length) || (col < 0 || col >= board[0].length) )
+    {
+      throw new ArrayIndexOutOfBoundsException("row or column must be within the board");
+    }
     if (board[row][col] == 0)                  // if the spot we want to add queen is clean, we can add
     {
       board[row][col] = -1;                    // queen is represented by -1
