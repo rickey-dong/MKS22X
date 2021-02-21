@@ -14,6 +14,14 @@ public class QueenBoard
   }
   private boolean addQueen(int row, int col)              // abc
   {                                                       // def          row 0 is abc, col 0 is ad
-    
+    if (board[row][col] == 0)                  // if the spot we want to add queen is clean, we can add
+    {
+      board[row][col] = -1;                    // queen is represented by -1
+      return true;
+    }
+    else                     // if it's already occupied or threatened
+    {
+      return false;                      
+    }
   }
 }
