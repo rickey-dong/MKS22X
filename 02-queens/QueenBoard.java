@@ -76,4 +76,31 @@ public class QueenBoard
       columnRay++;                              // removing death ray of queen to bottom right
     }
   }
+  public String toString()
+  {
+    String boardString = "";
+    for (int row = 0; row < board[0].length; row++)
+    {
+      for (int col = 0; col < board[0].length; col++)
+      {
+        if (board[row][col] == -1)
+        {
+          boardString += "Q";
+        }
+        else
+        {
+          boardString += "_";
+        }
+        if (col != board[0].length - 1)
+        {
+          boardString += " ";
+        }
+      }
+      if (row != board[0].length - 1)
+      {
+        boardString += "\n";
+      }
+    }
+    return boardString;
+  }
 }
