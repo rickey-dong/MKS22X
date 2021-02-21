@@ -103,4 +103,22 @@ public class QueenBoard
     }
     return boardString;
   }
+  public boolean solve()
+  {
+    for (int row = 0; row < board[0].length; row++)
+    {
+      for (int col = 0; col < board[0].length; col++)
+      {
+        if (board[row][col] != 0)
+        {
+          throw new IllegalStateException("board is supposed to start with a clean slate");
+        }
+      }
+    }
+    return solve(0);
+  }
+  public boolean solve(int col)
+  {
+    return true;
+  }
 }
