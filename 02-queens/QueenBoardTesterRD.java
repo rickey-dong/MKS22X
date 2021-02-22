@@ -1,4 +1,4 @@
-public class QueenBoardTester
+public class QueenBoardTesterRD
 {
   public static void main(String[] args)
   {
