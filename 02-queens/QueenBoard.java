@@ -158,7 +158,23 @@ public class QueenBoard
   }
   public int countSolutions(int col)
   {
-    return 0;
+    if (col == board[0].length)
+    {
+      return 1;
+    }
+    else
+    {
+      int counter = 0;
+      for (int row = 0; row < board[0].length; row++)
+      {
+        if (addQueen(row, col))
+        {
+          counter += countSolutions(col+1);
+          removeQueen(row,col);
+        }
+      }
+      return counter;
+    }
   }
 }
 
