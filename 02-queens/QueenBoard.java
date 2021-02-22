@@ -14,7 +14,7 @@ public class QueenBoard
   }
   private boolean addQueen(int row, int col)              
   {
-    if ( (row < 0 || row >= board[0].length) || (col < 0 || col >= board[0].length) )
+    if ( (row < 0 || row >= board.length) || (col < 0 || col >= board.length) )
     {
       throw new ArrayIndexOutOfBoundsException("row or column must be within the board");
     }
@@ -23,13 +23,13 @@ public class QueenBoard
       board[row][col] = -1;                    // queen is represented by -1
       int columnRay = col+1;
       int rowRay = row-1;
-      while (columnRay < board[0].length)
+      while (columnRay < board.length)
       {
         board[row][columnRay] += 1;                // death ray of queen to the right
         columnRay++;
       }
       columnRay = col+1;
-      while (columnRay < board[0].length && rowRay >= 0)
+      while (columnRay < board.length && rowRay >= 0)
       {
         board[rowRay][columnRay] += 1;
         rowRay--;
@@ -37,7 +37,7 @@ public class QueenBoard
       }
       columnRay = col+1;
       rowRay = row+1;
-      while (columnRay < board[0].length && rowRay < board[0].length)
+      while (columnRay < board.length && rowRay < board.length)
       {
         board[rowRay][columnRay] += 1;
         rowRay++;
@@ -55,13 +55,13 @@ public class QueenBoard
     board[row][col] = 0;                     // spot now is empty
     int columnRay = col+1;
     int rowRay = row-1;
-    while (columnRay < board[0].length)
+    while (columnRay < board.length)
     {
       board[row][columnRay] -= 1;                // removing death ray of queen to the right
       columnRay++;
     }
     columnRay = col+1;
-    while (columnRay < board[0].length && rowRay >= 0)
+    while (columnRay < board.length && rowRay >= 0)
     {
       board[rowRay][columnRay] -= 1;
       rowRay--;
@@ -69,7 +69,7 @@ public class QueenBoard
     }
     columnRay = col+1;
     rowRay = row+1;
-    while (columnRay < board[0].length && rowRay < board[0].length)
+    while (columnRay < board.length && rowRay < board.length)
     {
       board[rowRay][columnRay] -= 1;
       rowRay++;
@@ -79,9 +79,9 @@ public class QueenBoard
   public String toString()
   {
     String boardString = "";
-    for (int row = 0; row < board[0].length; row++)
+    for (int row = 0; row < board.length; row++)
     {
-      for (int col = 0; col < board[0].length; col++)
+      for (int col = 0; col < board.length; col++)
       {
         if (board[row][col] == -1)
         {
@@ -91,12 +91,12 @@ public class QueenBoard
         {
           boardString += "_";
         }
-        if (col != board[0].length - 1)
+        if (col != board.length - 1)
         {
           boardString += " ";
         }
       }
-      if (row != board[0].length - 1)
+      if (row != board.length - 1)
       {
         boardString += "\n";
       }
@@ -105,9 +105,9 @@ public class QueenBoard
   }
   public boolean solve()
   {
-    for (int row = 0; row < board[0].length; row++)
+    for (int row = 0; row < board.length; row++)
     {
-      for (int col = 0; col < board[0].length; col++)
+      for (int col = 0; col < board.length; col++)
       {
         if (board[row][col] != 0)
         {
@@ -119,13 +119,13 @@ public class QueenBoard
   }
   public boolean solve(int col)
   {
-    if (col == board[0].length)
+    if (col == board.length)
     {
       return true;
     }
     else
     {
-      for (int row = 0; row < board[0].length; row++)
+      for (int row = 0; row < board.length; row++)
       {
         if (addQueen(row, col))
         {
@@ -144,9 +144,9 @@ public class QueenBoard
   }
   public int countSolutions()
   {
-    for (int row = 0; row < board[0].length; row++)
+    for (int row = 0; row < board.length; row++)
     {
-      for (int col = 0; col < board[0].length; col++)
+      for (int col = 0; col < board.length; col++)
       {
         if (board[row][col] != 0)
         {
@@ -158,14 +158,14 @@ public class QueenBoard
   }
   public int countSolutions(int col)
   {
-    if (col == board[0].length)
+    if (col == board.length)
     {
       return 1;
     }
     else
     {
       int counter = 0;
-      for (int row = 0; row < board[0].length; row++)
+      for (int row = 0; row < board.length; row++)
       {
         if (addQueen(row, col))
         {

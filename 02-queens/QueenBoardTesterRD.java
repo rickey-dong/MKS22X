@@ -46,5 +46,7 @@ public class QueenBoardTesterRD
     System.out.println(ThreeByThree.countSolutions() + " should be 0");
     System.out.println(FourByFour.countSolutions());
     System.out.println(ThirtByThirt.countSolutions());
+    QueenBoard Zero = new QueenBoard(0);
+    System.out.println(Zero.countSolutions());
   }
 }
