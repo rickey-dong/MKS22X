@@ -119,6 +119,51 @@ public class QueenBoard
   }
   public boolean solve(int col)
   {
-    return true;
+    if (col == board[0].length)
+    {
+      return true;
+    }
+    else
+    {
+      for (int row = 0; row < board[0].length; row++)
+      {
+        if (addQueen(row, col))
+        {
+          if (!solve(col+1))
+          {
+            removeQueen(row, col);
+          }
+          else
+          {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
