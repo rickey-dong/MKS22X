@@ -26,4 +26,11 @@ public class Maze
   {
     System.out.println("\033[1;1H");
   }
+  private static String colorize(String s)
+  {
+    s = s.replace("@", "\033[32m\033[49m@\033[0m");
+    s = s.replace("#", "\033[37m\033[47m#\033[0m");
+    s = s.replace("E", "\033[35m\033[49mE\033[0m");
+    return s;
+  }
 }
