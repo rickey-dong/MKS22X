@@ -58,4 +58,20 @@ public class Maze
                           s = s.replace("E", "\033[35m\033[49mE\033[0m");
                           return s;
                         }
+  public String toString()
+  {
+    String asciiMaze = "";
+    for (int i = 0; i < maze.length; i++)
+    {
+      for (int j = 0; j < maze[i].length; j++)
+      {
+        asciiMaze += maze[i][j];
+      }
+      if (i != maze.length - 1)
+      {
+        asciiMaze += '\n';
+      }
+    }
+    return asciiMaze;
+  }
 }
