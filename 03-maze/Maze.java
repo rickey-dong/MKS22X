@@ -74,4 +74,51 @@ public class Maze
     }
     return asciiMaze;
   }
+  public int solve()
+  {
+    if (animate)
+    {
+      clearTerminal();
+    }
+    int ROW_OF_START = 0;
+    int COL_OF_START = 0;
+    for (int i = 0; i < maze.length; i++)
+    {
+      for (int j = 0; j < maze[i].length; j++)
+      {
+        if (maze[i][j] == 'S')
+        {
+          ROW_OF_START = i;
+          COL_OF_START = j;
+        }
+      }
+    }
+    return solve(ROW_OF_START, COL_OF_START);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
