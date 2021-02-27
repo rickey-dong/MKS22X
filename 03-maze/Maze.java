@@ -27,6 +27,7 @@ public class Maze
       }
       row++;
     }
+    animate = false;
   }
   private void wait(int millis)
   {
