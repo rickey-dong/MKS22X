@@ -4,6 +4,30 @@ public class Maze
 {
   private char[][] maze;
   private boolean animate;
+  public Maze(String filename) throws FileNotFoundException
+  {
+    File mazeFile = new File(filename);
+    Scanner mazeScan = new Scanner(mazeFile);
+    int height = 1;
+    int length = mazeScan.nextLine().length();
+    while (mazeScan.hasNextLine())
+    {
+      height++;
+      mazeScan.nextLine();
+    }
+    maze = new char[height][length];
+    Scanner mazeToArray = new Scanner(mazeFile);
+    int row = 0;
+    while (mazeToArray.hasNextLine())
+    {
+      String line = mazeToArray.nextLine();
+      for (int i = 0; i < line.length(); i++)
+      {
+        maze[row][i] = line.charAt(i);
+      }
+      row++;
+    }
+  }
   private void wait(int millis)
   {
     try 
