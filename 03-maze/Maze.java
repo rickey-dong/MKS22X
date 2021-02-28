@@ -95,6 +95,25 @@ public class Maze
     }
     return solve(ROW_OF_START, COL_OF_START);
   }
+  private int solve(int row, int col)
+  {
+    if (animate)
+    {
+      gotoTop();
+      System.out.println(this);
+      wait(50);
+    }
+    // if you're on the E, return the amount of @ signs without changing the E
+    // if you're on an open space count++
+    //else
+    //count = 0
+    // if you can go up, change current tile to @ and +1 to count and recurse
+    // down
+    // left
+    // right
+    // if couldnt go up/down/left/right, backtrack; put . on current spot, count--
+    // going back where you came from which was marked by @ sign
+  }
 }
 
 
