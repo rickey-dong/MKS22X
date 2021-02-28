@@ -29,35 +29,35 @@ public class Maze
     }
     animate = false;
   }
-                        private void wait(int millis)
-                        {
-                          try 
-                          {
-                            Thread.sleep(millis);
-                          }
-                          catch(InterruptedException e) 
-                          {
-                          }
-                        }
-                        public void setAnimate(boolean b)
-                        {
-                          animate = b;
-                        }
-                        public static void clearTerminal()
-                        {
-                          System.out.println("\033[2J");
-                        }
-                        public static void gotoTop()
-                        {
-                          System.out.println("\033[1;1H");
-                        }
-                        private static String colorize(String s)
-                        {
-                          s = s.replace("@", "\033[32m\033[49m@\033[0m");
-                          s = s.replace("#", "\033[37m\033[47m#\033[0m");
-                          s = s.replace("E", "\033[35m\033[49mE\033[0m");
-                          return s;
-                        }
+  private void wait(int millis)
+  {
+    try 
+    {
+      Thread.sleep(millis);
+    }
+    catch(InterruptedException e) 
+    {
+    }
+  }
+  public void setAnimate(boolean b)
+  {
+    animate = b;
+  }
+  public static void clearTerminal()
+  {
+    System.out.println("\033[2J");
+  }
+  public static void gotoTop()
+  {
+    System.out.println("\033[1;1H");
+  }
+  private static String colorize(String s)
+  {
+    s = s.replace("@", "\033[32m\033[49m@\033[0m");
+    s = s.replace("#", "\033[37m\033[47m#\033[0m");
+    s = s.replace("E", "\033[35m\033[49mE\033[0m");
+    return s;
+  }
   public String toString()
   {
     String asciiMaze = "";
@@ -101,7 +101,7 @@ public class Maze
     {
       gotoTop();
       System.out.println(colorize(this.toString()));
-      wait(50);
+      wait(10);
     }
     if (maze[row][col] == 'E')
     {
@@ -114,8 +114,8 @@ public class Maze
     else
     {
       int counter = 0;
-      if (maze[row][col] == ' ' || maze[row][col] == 'S')
-      {
+      //if (maze[row][col] == ' ' || maze[row][col] == 'S')
+    //  {
         maze[row][col] = '@';
         counter = solve(row-1,col,count+1);
         if (counter > 0)
@@ -137,7 +137,7 @@ public class Maze
         {
           return counter;
         }
-      }
+    //  }
       maze[row][col] = '.';
       return -1;
     }
