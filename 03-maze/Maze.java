@@ -93,7 +93,7 @@ public class Maze
         }
       }
     }
-    return solve(ROW_OF_START, COL_OF_START, ROW_OF_START, COL_OF_START);
+    return solve(ROW_OF_START, COL_OF_START, 0);
   }
   /*private int solve(int row, int col, int startRow, int startCol)
   {
@@ -212,7 +212,50 @@ public class Maze
   }*/
   private int solve(int row, int col, int count)
   {
-    
+    if (animate)
+    {
+      gotoTop();
+      System.out.println(colorize(this.toString()));
+      wait(200);
+    }
+    if (maze[row][col] == 'E')
+    {
+      return count;
+    }
+    else if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.')
+    {
+      return 0;
+    }
+    else
+    {
+      int counter = 0;
+      if (maze[row][col] == ' ' || maze[row][col] == 'S')
+      {
+        maze[row][col] = '@';
+        counter += solve(row-1,col,count+1);
+        if (counter > 0)
+        {
+          return counter;
+        }
+        counter += solve(row+1,col,count+1);
+        if (counter > 0)
+        {
+          return counter;
+        }
+        counter += solve(row,col+1,count+1);
+        if (counter > 0)
+        {
+          return counter;
+        }
+        counter += solve(row,col-1,count+1);
+        if (counter > 0)
+        {
+          return counter;
+        }
+      }
+      maze[row][col] = '.';
+      return -1;
+    }
   }
 }
 
