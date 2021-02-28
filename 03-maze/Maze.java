@@ -115,7 +115,7 @@ public class Maze
     if (maze[row][col] == 'E')
     {
       //maze[startRow][startCol] = '@';
-      return 0;
+      return 1;
     }
                 // else
                 // {
@@ -163,9 +163,51 @@ public class Maze
                 //   maze[row][col] = '.';  
                 //   return -1;
                 // }
+    else if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.')
+    {
+      return 0;
+    }
     else
     {
-      
+      maze[row][col] = '@';
+      int count = 0;
+      for (int i = 0; i < 4; i++)
+      {
+        if (i == 0)
+        {
+          count += solve(row+1,col,startRow,startCol);
+          if (count > 0)
+          {
+            return count;
+          }
+        }
+        else if (i == 1)
+        {
+          count += solve(row-1,col,startRow,startCol);
+          if (count > 0)
+          {
+            return count;
+          }
+        }
+        else if (i == 2)
+        {
+          count += solve(row,col+1,startRow,startCol);
+          if (count > 0)
+          {
+            return count;
+          }
+        }
+        else
+        {
+          count += solve(row,col-1,startRow,startCol);
+          if (count > 0)
+          {
+            return count;
+          }
+        }
+      }
+      maze[row][col] = '.';
+      return -1;
     }
   }
 }
