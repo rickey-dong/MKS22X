@@ -95,7 +95,7 @@ public class Maze
     }
     return solve(ROW_OF_START, COL_OF_START, ROW_OF_START, COL_OF_START);
   }
-  private int solve(int row, int col, int startRow, int startCol)
+  /*private int solve(int row, int col, int startRow, int startCol)
   {
     if (animate)
     {
@@ -209,6 +209,10 @@ public class Maze
       maze[row][col] = '.';
       return -1;
     }
+  }*/
+  private int solve(int row, int col, int count)
+  {
+    
   }
 }
 
