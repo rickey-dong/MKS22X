@@ -93,7 +93,7 @@ public class Maze
         }
       }
     }
-    return solve(ROW_OF_START, COL_OF_START, 0);
+    return solve(ROW_OF_START, COL_OF_START, 0); //start solving the maze at letter S
   }
   private int solve(int row, int col, int count)
   {
@@ -103,43 +103,40 @@ public class Maze
       System.out.println(colorize(this.toString()));
       wait(10);
     }
-    if (maze[row][col] == 'E')
+    if (maze[row][col] == 'E') //if you found the exit, return the number of @ signs you have accumulated
     {
       return count;
     }
     else if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.')
     {
-      return 0;
+      return 0; //if you're on something impassable, you can't place an @ sign
     }
     else
-    {
+    {  // otherwise, that means you're on an empty space
       int counter = 0;
-      //if (maze[row][col] == ' ' || maze[row][col] == 'S')
-    //  {
-        maze[row][col] = '@';
-        counter = solve(row-1,col,count+1);
-        if (counter > 0)
-        {
-          return counter;
-        }
-        counter = solve(row+1,col,count+1);
-        if (counter > 0)
-        {
-          return counter;
-        }
-        counter = solve(row,col+1,count+1);
-        if (counter > 0)
-        {
-          return counter;
-        }
-        counter = solve(row,col-1,count+1);
-        if (counter > 0)
-        {
-          return counter;
-        }
-    //  }
-      maze[row][col] = '.';
-      return -1;
+      maze[row][col] = '@'; //turn it into an @
+      counter = solve(row-1,col,count+1); //try to find solutions going up now that you are on a valid tile
+      if (counter > 0)
+      {
+        return counter; //if you found solution, return it
+      }
+      counter = solve(row+1,col,count+1); //down
+      if (counter > 0)
+      {
+        return counter;
+      }
+      counter = solve(row,col+1,count+1); //right
+      if (counter > 0)
+      {
+        return counter;
+      }
+      counter = solve(row,col-1,count+1); //left
+      if (counter > 0)
+      {
+        return counter;
+      }
+      maze[row][col] = '.'; //if there were no solutions in all 4 directions, start backtracking
+      return -1; //since there were no solutions, -1
     }
   }
 }
