@@ -113,51 +113,35 @@ public class Maze
     // if couldnt go up/down/left/right, backtrack; put . on current spot, count--
     // going back where you came from which was marked by @ sign
     int count = 0;
-    if (maze[row][col+1] == 'E')
+    if (maze[row][col] == 'E')
     {
-      maze[row][col] = '@';
-      return 1;
-    }
-    else if (maze[row][col-1] == 'E')
-    {
-      maze[row][col] = '@';
-      return 1;
-    }
-    else if (maze[row+1][col] == 'E')
-    {
-      maze[row][col] = '@';
-      return 1;
-    }
-    else if (maze[row-1][col] == 'E')
-    {
-      maze[row][col] = '@';
-      return 1;
+      return count;
     }
     else
     {
-      if (maze[row-1][col] == ' ')
+      if (maze[row-1][col] == ' ' || maze[row-1][col] == 'E')
       {
         maze[row][col] = '@';
         count++;
-        count += solve(row-1,col);
+        return count + solve(row-1,col);
       }
-      else if (maze[row+1][col] == ' ')
+      if (maze[row+1][col] == ' ' || maze[row+1][col] == 'E')
       {
         maze[row][col] = '@';
         count++;
-        count += solve(row+1,col);
+        return count + solve(row+1,col);
       }
-      else if (maze[row][col-1] == ' ')
+      if (maze[row][col-1] == ' ' || maze[row][col-1] == 'E')
       {
         maze[row][col] = '@';
         count++;
-        count += solve(row,col-1);
+        return count + solve(row,col-1);
       }
-      else if (maze[row][col+1] == ' ')
+      if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E')
       {
         maze[row][col] = '@';
         count++;
-        count += solve(row,col+1);
+        return count + solve(row,col+1);
       }
       if (maze[row][col-1] != ' ' && maze[row][col+1] != ' ' && maze[row-1][col] != ' ' && maze[row+1][col] != ' ')
       {
@@ -167,6 +151,28 @@ public class Maze
       return count;
     }
   }
+    /*private int solve(int row, int col, int count)
+    {
+      if (animate)
+      {
+        gotoTop();
+        System.out.println(this);
+        wait(1000);
+      }
+      if (maze[row][col] == 'E')
+      {
+        return count;
+      }
+      else
+      {
+        if (maze[row][col] == 'S' || maze[row][col] == ' ')
+        {
+          count++;
+          maze[row][col] = '@';
+        }
+        
+      }
+    }*/
 }
 
 
