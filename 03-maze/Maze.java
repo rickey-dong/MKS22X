@@ -173,6 +173,7 @@ public class Maze
       {
         return solve(row+1,col,startRow,startCol) - 1;
       }
+      maze[startRow][startCol] = '.';
       return -1;
     }
   }
