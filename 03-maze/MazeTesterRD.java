@@ -5,7 +5,7 @@ public class MazeTesterRD
   {
     try
     {
-      Maze easyMaze = new Maze("data2.dat");
+      Maze easyMaze = new Maze("data3.dat");
       System.out.println(easyMaze);
       easyMaze.setAnimate(true);
       System.out.println(easyMaze.solve() + " steps");

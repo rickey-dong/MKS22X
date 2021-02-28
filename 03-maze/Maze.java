@@ -101,7 +101,7 @@ public class Maze
     {
       gotoTop();
       System.out.println(colorize(this.toString()));
-      wait(100);
+      wait(50);
     }
     if (maze[row][col] == 'E')
     {
