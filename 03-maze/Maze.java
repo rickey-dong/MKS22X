@@ -216,7 +216,7 @@ public class Maze
     {
       gotoTop();
       System.out.println(colorize(this.toString()));
-      wait(200);
+      wait(100);
     }
     if (maze[row][col] == 'E')
     {
@@ -232,22 +232,22 @@ public class Maze
       if (maze[row][col] == ' ' || maze[row][col] == 'S')
       {
         maze[row][col] = '@';
-        counter += solve(row-1,col,count+1);
+        counter = solve(row-1,col,count+1);
         if (counter > 0)
         {
           return counter;
         }
-        counter += solve(row+1,col,count+1);
+        counter = solve(row+1,col,count+1);
         if (counter > 0)
         {
           return counter;
         }
-        counter += solve(row,col+1,count+1);
+        counter = solve(row,col+1,count+1);
         if (counter > 0)
         {
           return counter;
         }
-        counter += solve(row,col-1,count+1);
+        counter = solve(row,col-1,count+1);
         if (counter > 0)
         {
           return counter;
