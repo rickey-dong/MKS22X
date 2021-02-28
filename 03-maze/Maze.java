@@ -101,10 +101,9 @@ public class Maze
     {
       gotoTop();
       System.out.println(this);
-      wait(50);
+      wait(1000);
     }
     // if you're on the E, return the amount of @ signs without changing the E
-    // if you're on an open space count++
     //else
     //count = 0
     // if you can go up, change current tile to @ and +1 to count and recurse
@@ -113,6 +112,60 @@ public class Maze
     // right
     // if couldnt go up/down/left/right, backtrack; put . on current spot, count--
     // going back where you came from which was marked by @ sign
+    int count = 0;
+    if (maze[row][col+1] == 'E')
+    {
+      maze[row][col] = '@';
+      return 1;
+    }
+    else if (maze[row][col-1] == 'E')
+    {
+      maze[row][col] = '@';
+      return 1;
+    }
+    else if (maze[row+1][col] == 'E')
+    {
+      maze[row][col] = '@';
+      return 1;
+    }
+    else if (maze[row-1][col] == 'E')
+    {
+      maze[row][col] = '@';
+      return 1;
+    }
+    else
+    {
+      if (maze[row-1][col] == ' ')
+      {
+        maze[row][col] = '@';
+        count++;
+        count += solve(row-1,col);
+      }
+      else if (maze[row+1][col] == ' ')
+      {
+        maze[row][col] = '@';
+        count++;
+        count += solve(row+1,col);
+      }
+      else if (maze[row][col-1] == ' ')
+      {
+        maze[row][col] = '@';
+        count++;
+        count += solve(row,col-1);
+      }
+      else if (maze[row][col+1] == ' ')
+      {
+        maze[row][col] = '@';
+        count++;
+        count += solve(row,col+1);
+      }
+      if (maze[row][col-1] != ' ' && maze[row][col+1] != ' ' && maze[row-1][col] != ' ' && maze[row+1][col] != ' ')
+      {
+        maze[row][col] = '.';
+        count--;
+      }
+      return count;
+    }
   }
 }
 
