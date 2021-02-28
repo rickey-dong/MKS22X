@@ -100,8 +100,8 @@ public class Maze
     if (animate)
     {
       gotoTop();
-      System.out.println(this);
-      wait(300);
+      System.out.println(colorize(this.toString()));
+      wait(200);
     }
     // if you're on the E, return the amount of @ signs without changing the E
     //else
@@ -114,50 +114,38 @@ public class Maze
     // going back where you came from which was marked by @ sign
     if (maze[row][col] == 'E')
     {
-      maze[startRow][startCol] = '@';
-      return 1;
+      //maze[startRow][startCol] = '@';
+      return 0;
     }
     else
     {
       int count = 0;
       if (maze[row-1][col] == ' '  || maze[row-1][col] == 'E')
       {
-        if (maze[row][col] != 'S')
-        {
-          maze[row][col] = '@';
-          count++;
-        }
+        maze[row][col] = '@';
+        count++;
         return count + solve(row-1,col,startRow,startCol);
       }
       if (maze[row+1][col] == ' '  || maze[row+1][col] == 'E')
       {
-        if (maze[row][col] != 'S')
-        {
-          maze[row][col] = '@';
-          count++;
-        }
+        maze[row][col] = '@';
+        count++;
         return count + solve(row+1,col,startRow,startCol);
       }
       if (maze[row][col-1] == ' '  || maze[row][col-1] == 'E')
       {
-        if (maze[row][col] != 'S')
-        {
-          maze[row][col] = '@';
-          count++;
-        }
+        maze[row][col] = '@';
+        count++;
         return count + solve(row,col-1,startRow,startCol);
       }
       if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E')
       {
-        if (maze[row][col] != 'S')
-        {
-          maze[row][col] = '@';
-          count++;
-        }
+        maze[row][col] = '@';
+        count++;
         return count + solve(row,col+1,startRow,startCol);
       }
       maze[row][col] = '.';
-      if (maze[row][col-1] == '@')
+      /*if (maze[row][col-1] == '@')
       {
         return solve(row,col-1,startRow,startCol) - 1;
       }
@@ -172,7 +160,7 @@ public class Maze
       else if (maze[row+1][col] == '@')
       {
         return solve(row+1,col,startRow,startCol) - 1;
-      }
+      }*/
       maze[startRow][startCol] = '.';
       return -1;
     }

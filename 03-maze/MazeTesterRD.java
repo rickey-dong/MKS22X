@@ -9,7 +9,7 @@ public class MazeTesterRD
       System.out.println(easyMaze);
       easyMaze.setAnimate(true);
       System.out.println(easyMaze.solve() + " steps");
-      System.out.println(easyMaze);
+      System.out.println(easyMaze.toString());
     }
     catch(FileNotFoundException e)
     {
