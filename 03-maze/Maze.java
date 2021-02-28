@@ -159,19 +159,19 @@ public class Maze
       maze[row][col] = '.';
       if (maze[row][col-1] == '@')
       {
-        return solve(row,col-1,startRow,colRow);
+        return solve(row,col-1,startRow,colRow) - 1;
       }
       else if (maze[row][col+1] == '@')
       {
-        return solve(row,col+1,startRow,colRow);
+        return solve(row,col+1,startRow,colRow) - 1;
       }
       else if (maze[row-1][col] == '@')
       {
-        return solve(row-1,col,startRow,colRow);
+        return solve(row-1,col,startRow,colRow) - 1;
       }
       else if (maze[row+1][col] == '@')
       {
-        return solve(row+1,col,startRow,colRow);
+        return solve(row+1,col,startRow,colRow) - 1;
       }
       return -1;
     }
