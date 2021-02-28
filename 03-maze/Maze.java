@@ -117,52 +117,55 @@ public class Maze
       //maze[startRow][startCol] = '@';
       return 0;
     }
+                // else
+                // {
+                //   int count = 0;
+                //   if (maze[row-1][col] == ' '  || maze[row-1][col] == 'E')
+                //   {
+                //     maze[row][col] = '@';
+                //     count++;
+                //     count = count + solve(row-1,col,startRow,startCol);
+                //     if (count != -1)
+                //     {
+                //       return count;
+                //     }
+                //   }
+                //   if (maze[row+1][col] == ' '  || maze[row+1][col] == 'E')
+                //   {
+                //     maze[row][col] = '@';
+                //     count++;
+                //     count = count + solve(row+1,col,startRow,startCol);
+                //     if (count != -1)
+                //     {
+                //       return count;
+                //     }
+                //   }
+                //   if (maze[row][col-1] == ' '  || maze[row][col-1] == 'E')
+                //   {
+                //     maze[row][col] = '@';
+                //     count++;
+                //     count= count + solve(row,col-1,startRow,startCol);
+                //     if (count != -1)
+                //     {
+                //       return count;
+                //     }
+                //   }
+                //   if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E')
+                //   {
+                //     maze[row][col] = '@';
+                //     count++;
+                //     count = count + solve(row,col+1,startRow,startCol);
+                //     if (count != -1)
+                //     {
+                //       return count;
+                //     }
+                //   }
+                //   maze[row][col] = '.';  
+                //   return -1;
+                // }
     else
     {
-      int count = 0;
-      if (maze[row-1][col] == ' '  || maze[row-1][col] == 'E')
-      {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row-1,col,startRow,startCol);
-      }
-      if (maze[row+1][col] == ' '  || maze[row+1][col] == 'E')
-      {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row+1,col,startRow,startCol);
-      }
-      if (maze[row][col-1] == ' '  || maze[row][col-1] == 'E')
-      {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row,col-1,startRow,startCol);
-      }
-      if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E')
-      {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row,col+1,startRow,startCol);
-      }
-      maze[row][col] = '.';
-      /*if (maze[row][col-1] == '@')
-      {
-        return solve(row,col-1,startRow,startCol) - 1;
-      }
-      else if (maze[row][col+1] == '@')
-      {
-        return solve(row,col+1,startRow,startCol) - 1;
-      }
-      else if (maze[row-1][col] == '@')
-      {
-        return solve(row-1,col,startRow,startCol) - 1;
-      }
-      else if (maze[row+1][col] == '@')
-      {
-        return solve(row+1,col,startRow,startCol) - 1;
-      }*/
-      maze[startRow][startCol] = '.';
-      return -1;
+      
     }
   }
 }
