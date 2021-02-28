@@ -93,15 +93,15 @@ public class Maze
         }
       }
     }
-    return solve(ROW_OF_START, COL_OF_START);
+    return solve(ROW_OF_START, COL_OF_START, ROW_OF_START, COL_OF_START);
   }
-  private int solve(int row, int col)
+  private int solve(int row, int col, int startRow, int colRow)
   {
     if (animate)
     {
       gotoTop();
       System.out.println(this);
-      wait(1000);
+      wait(300);
     }
     // if you're on the E, return the amount of @ signs without changing the E
     //else
@@ -112,67 +112,70 @@ public class Maze
     // right
     // if couldnt go up/down/left/right, backtrack; put . on current spot, count--
     // going back where you came from which was marked by @ sign
-    int count = 0;
     if (maze[row][col] == 'E')
     {
-      return count;
+      maze[startRow][colRow] = '@';
+      return 1;
     }
     else
     {
-      if (maze[row-1][col] == ' ' || maze[row-1][col] == 'E')
+      int count = 0;
+      if (maze[row-1][col] == ' '  || maze[row-1][col] == 'E')
       {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row-1,col);
+        if (maze[row][col] != 'S')
+        {
+          maze[row][col] = '@';
+          count++;
+        }
+        return count + solve(row-1,col,startRow,colRow);
       }
-      if (maze[row+1][col] == ' ' || maze[row+1][col] == 'E')
+      if (maze[row+1][col] == ' '  || maze[row+1][col] == 'E')
       {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row+1,col);
+        if (maze[row][col] != 'S')
+        {
+          maze[row][col] = '@';
+          count++;
+        }
+        return count + solve(row+1,col,startRow,colRow);
       }
-      if (maze[row][col-1] == ' ' || maze[row][col-1] == 'E')
+      if (maze[row][col-1] == ' '  || maze[row][col-1] == 'E')
       {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row,col-1);
+        if (maze[row][col] != 'S')
+        {
+          maze[row][col] = '@';
+          count++;
+        }
+        return count + solve(row,col-1,startRow,colRow);
       }
       if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E')
       {
-        maze[row][col] = '@';
-        count++;
-        return count + solve(row,col+1);
+        if (maze[row][col] != 'S')
+        {
+          maze[row][col] = '@';
+          count++;
+        }
+        return count + solve(row,col+1,startRow,colRow);
       }
-      if (maze[row][col-1] != ' ' && maze[row][col+1] != ' ' && maze[row-1][col] != ' ' && maze[row+1][col] != ' ')
+      maze[row][col] = '.';
+      if (maze[row][col-1] == '@')
       {
-        maze[row][col] = '.';
-        count--;
+        return solve(row,col-1,startRow,colRow);
       }
-      return count;
+      else if (maze[row][col+1] == '@')
+      {
+        return solve(row,col+1,startRow,colRow);
+      }
+      else if (maze[row-1][col] == '@')
+      {
+        return solve(row-1,col,startRow,colRow);
+      }
+      else if (maze[row+1][col] == '@')
+      {
+        return solve(row+1,col,startRow,colRow);
+      }
+      return -1;
     }
   }
-    /*private int solve(int row, int col, int count)
-    {
-      if (animate)
-      {
-        gotoTop();
-        System.out.println(this);
-        wait(1000);
-      }
-      if (maze[row][col] == 'E')
-      {
-        return count;
-      }
-      else
-      {
-        if (maze[row][col] == 'S' || maze[row][col] == ' ')
-        {
-          count++;
-          maze[row][col] = '@';
-        }
-        
-      }
-    }*/
 }
 
 
