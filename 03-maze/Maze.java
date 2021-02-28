@@ -95,7 +95,7 @@ public class Maze
     }
     return solve(ROW_OF_START, COL_OF_START, ROW_OF_START, COL_OF_START);
   }
-  private int solve(int row, int col, int startRow, int colRow)
+  private int solve(int row, int col, int startRow, int startCol)
   {
     if (animate)
     {
@@ -114,7 +114,7 @@ public class Maze
     // going back where you came from which was marked by @ sign
     if (maze[row][col] == 'E')
     {
-      maze[startRow][colRow] = '@';
+      maze[startRow][startCol] = '@';
       return 1;
     }
     else
@@ -127,7 +127,7 @@ public class Maze
           maze[row][col] = '@';
           count++;
         }
-        return count + solve(row-1,col,startRow,colRow);
+        return count + solve(row-1,col,startRow,startCol);
       }
       if (maze[row+1][col] == ' '  || maze[row+1][col] == 'E')
       {
@@ -136,7 +136,7 @@ public class Maze
           maze[row][col] = '@';
           count++;
         }
-        return count + solve(row+1,col,startRow,colRow);
+        return count + solve(row+1,col,startRow,startCol);
       }
       if (maze[row][col-1] == ' '  || maze[row][col-1] == 'E')
       {
@@ -145,7 +145,7 @@ public class Maze
           maze[row][col] = '@';
           count++;
         }
-        return count + solve(row,col-1,startRow,colRow);
+        return count + solve(row,col-1,startRow,startCol);
       }
       if (maze[row][col+1] == ' ' || maze[row][col+1] == 'E')
       {
@@ -154,24 +154,24 @@ public class Maze
           maze[row][col] = '@';
           count++;
         }
-        return count + solve(row,col+1,startRow,colRow);
+        return count + solve(row,col+1,startRow,startCol);
       }
       maze[row][col] = '.';
       if (maze[row][col-1] == '@')
       {
-        return solve(row,col-1,startRow,colRow) - 1;
+        return solve(row,col-1,startRow,startCol) - 1;
       }
       else if (maze[row][col+1] == '@')
       {
-        return solve(row,col+1,startRow,colRow) - 1;
+        return solve(row,col+1,startRow,startCol) - 1;
       }
       else if (maze[row-1][col] == '@')
       {
-        return solve(row-1,col,startRow,colRow) - 1;
+        return solve(row-1,col,startRow,startCol) - 1;
       }
       else if (maze[row+1][col] == '@')
       {
-        return solve(row+1,col,startRow,colRow) - 1;
+        return solve(row+1,col,startRow,startCol) - 1;
       }
       return -1;
     }
