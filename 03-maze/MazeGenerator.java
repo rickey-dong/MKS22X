@@ -60,7 +60,6 @@ public class MazeGenerator
         {
           while (countStraight < 3)
           {
-            //System.out.println(countStraight);
             generateAmazing(maze,rows,cols,startRow,startCol+1, countStraight+1, 0);
             countStraight++;
           }
@@ -69,7 +68,6 @@ public class MazeGenerator
         {
           while (countStraight < 3)
           {
-            //System.out.println(countStraight);
             generateAmazing(maze,rows,cols,startRow,startCol-1, countStraight+1, 1);
             countStraight++;
           }
@@ -78,16 +76,14 @@ public class MazeGenerator
         {
           while (countStraight < 3)
           {
-            //System.out.println(countStraight);
             generateAmazing(maze,rows,cols,startRow-1,startCol, countStraight+1, 2);
             countStraight++;
           }
         }
-        if ((direction == -1 && move == 3) || (direction == 3) ) //direction == 3 || move == 3
+        if ((direction == -1 && move == 3) || (direction == 3) )
         {
           while (countStraight < 3)
           {
-            //System.out.println(countStraight);
             generateAmazing(maze,rows,cols,startRow+1,startCol, countStraight+1, 3);
             countStraight++;
           }
