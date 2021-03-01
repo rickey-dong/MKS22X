@@ -26,4 +26,16 @@ public class MazeGenerator
     }
     return count;
   }
+  public static boolean isSafeToCarve(char[][] maze, int currentRow, int currentCol)
+  {
+    if (currentRow == 0 || currentCol == 0 || currentRow == maze.length-1 || currentCol == maze[0].length-1)
+    {
+      return false;
+    }
+    if (countAdjacency(maze, currentRow, currentCol) >= 2)
+    {
+      return false;
+    }
+    return true;
+  }
 }
