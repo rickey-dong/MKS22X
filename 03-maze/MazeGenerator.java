@@ -38,4 +38,20 @@ public class MazeGenerator
     }
     return true;
   }
+  public static String toString(char[][] maze)
+  {
+    String asciiMaze = "";
+    for (int i = 0; i < maze.length; i++)
+    {
+      for (int j = 0; j < maze[i].length; j++)
+      {
+        asciiMaze += maze[i][j];
+      }
+      if (i != maze.length - 1)
+      {
+        asciiMaze += '\n';
+      }
+    }
+    return asciiMaze;
+  }
 }
