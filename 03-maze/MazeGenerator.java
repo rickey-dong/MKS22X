@@ -3,11 +3,7 @@ public class MazeGenerator
 {
   public static void generate(char[][] maze, int rows, int cols, int startRow, int startCol)
   {
-    if (!isSafeToCarve(maze, startRow, startCol))
-    {
-      System.out.println(toString(maze));
-    }
-    else
+    if (isSafeToCarve(maze, startRow, startCol))
     {
       maze[startRow][startCol] = ' ';
       ArrayList<Integer> moves = new ArrayList<Integer>(4);
@@ -15,12 +11,13 @@ public class MazeGenerator
       moves.add(1); //left
       moves.add(2); //up
       moves.add(3); //down
-      Collections.shuffle(moves);
+      /*Collections.shuffle(moves);
       int move = moves.get(0);
       if (move == 0)
       {
         generate(maze,rows,cols,startRow,startCol+1);
       }
+      moves.remove(0);
       if (move == 1)
       {
         generate(maze,rows,cols,startRow,startCol-1);
@@ -32,7 +29,33 @@ public class MazeGenerator
       if (move == 3)
       {
         generate(maze,rows,cols,startRow+1,startCol);
+      }*/
+      while (moves.size() != 0)
+      {
+        Collections.shuffle(moves);
+        int move = moves.get(0);
+        if (move == 0)
+        {
+          generate(maze,rows,cols,startRow,startCol+1);
+        }
+        if (move == 1)
+        {
+          generate(maze,rows,cols,startRow,startCol-1);
+        }
+        if (move == 2)
+        {
+          generate(maze,rows,cols,startRow-1,startCol);
+        }
+        if (move == 3)
+        {
+          generate(maze,rows,cols,startRow+1,startCol);
+        }
+        moves.remove(0);
       }
+    }
+    else
+    {
+      //System.out.println(toString(maze));
     }
   }
   public static int countAdjacency(char[][] maze, int currentRow, int currentCol)
@@ -71,21 +94,5 @@ public class MazeGenerator
       return false;
     }
     return true;
-  }
-  public static String toString(char[][] maze)
-  {
-    String asciiMaze = "";
-    for (int i = 0; i < maze.length; i++)
-    {
-      for (int j = 0; j < maze[i].length; j++)
-      {
-        asciiMaze += maze[i][j];
-      }
-      if (i != maze.length - 1)
-      {
-        asciiMaze += '\n';
-      }
-    }
-    return asciiMaze;
   }
 }
