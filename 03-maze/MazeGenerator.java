@@ -3,7 +3,37 @@ public class MazeGenerator
 {
   public static void generate(char[][] maze, int rows, int cols, int startRow, int startCol)
   {
-    
+    if (!isSafeToCarve(maze, startRow, startCol))
+    {
+      System.out.println(toString(maze));
+    }
+    else
+    {
+      maze[startRow][startCol] = ' ';
+      ArrayList<Integer> moves = new ArrayList<Integer>(4);
+      moves.add(0); //right
+      moves.add(1); //left
+      moves.add(2); //up
+      moves.add(3); //down
+      Collections.shuffle(moves);
+      int move = moves.get(0);
+      if (move == 0)
+      {
+        generate(maze,rows,cols,startRow,startCol+1);
+      }
+      if (move == 1)
+      {
+        generate(maze,rows,cols,startRow,startCol-1);
+      }
+      if (move == 2)
+      {
+        generate(maze,rows,cols,startRow-1,startCol);
+      }
+      if (move == 3)
+      {
+        generate(maze,rows,cols,startRow+1,startCol);
+      }
+    }
   }
   public static int countAdjacency(char[][] maze, int currentRow, int currentCol)
   {
@@ -29,6 +59,10 @@ public class MazeGenerator
   public static boolean isSafeToCarve(char[][] maze, int currentRow, int currentCol)
   {
     if (currentRow == 0 || currentCol == 0 || currentRow == maze.length-1 || currentCol == maze[0].length-1)
+    {
+      return false;
+    }
+    if (maze[currentRow][currentCol] == ' ')
     {
       return false;
     }
