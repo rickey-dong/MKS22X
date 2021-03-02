@@ -2,7 +2,7 @@ public class MazeGeneratorTesterRD
 {
   public static void main(String[] args)
   {
-    char[][] SixBySix = new char[20][38];
+    char[][] SixBySix = new char[20][70];
     for (int i = 0; i < SixBySix.length; i++)
     {
       for (int j = 0; j < SixBySix[i].length; j++)
@@ -10,8 +10,8 @@ public class MazeGeneratorTesterRD
         SixBySix[i][j] = '#';
       }
     }
-    //MazeGenerator.generate(SixBySix, 6,6, 1, 1);
-    MazeGenerator.generateAmazing(SixBySix, 6,6, 1,1);
+    MazeGenerator.generate(SixBySix, SixBySix.length,SixBySix[0].length, 10, 35);
+    //MazeGenerator.generateAmazing(SixBySix, 6,6, 1,1);
     System.out.println(toString(SixBySix));
   }
   public static String toString(char[][] maze)
