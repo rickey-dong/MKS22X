@@ -1,6 +1,19 @@
 import java.util.*;
 public class MazeGenerator
 {
+  public static void main(String[] args)
+  {
+    char[][] TwentyBySeventy = new char[20][70];
+    for (int i = 0; i < TwentyBySeventy.length; i++)
+    {
+      for (int j = 0; j < TwentyBySeventy[i].length; j++)
+      {
+        TwentyBySeventy[i][j] = '#';
+      }
+    }
+    generateAmazing(TwentyBySeventy, TwentyBySeventy.length, TwentyBySeventy[0].length, 10, 35);
+    System.out.println(toString(TwentyBySeventy));
+  }
   public static void generate(char[][] maze, int rows, int cols, int startRow, int startCol)
   {
     if (isSafeToCarve(maze, startRow, startCol))
@@ -133,5 +146,21 @@ public class MazeGenerator
       return false;
     }
     return true;
+  }
+  public static String toString(char[][] maze)
+  {
+    String asciiMaze = "";
+    for (int i = 0; i < maze.length; i++)
+    {
+      for (int j = 0; j < maze[i].length; j++)
+      {
+        asciiMaze += maze[i][j];
+      }
+      if (i != maze.length - 1)
+      {
+        asciiMaze += '\n';
+      }
+    }
+    return asciiMaze;
   }
 }
