@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class USACO
 {
-  public int bronze(String filename) throws FileNotFoundException
+  public static int bronze(String filename) throws FileNotFoundException
   {
     /*4 6 22 2
       28 25 20 32 34 36
