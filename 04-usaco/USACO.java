@@ -86,4 +86,68 @@ public class USACO
     }
     return depths * 72 * 72; //multiply to find cubic inches
   }
+  public static long silver(String filename) throws FileNotFoundException
+  {
+    File input = new File(filename);
+    Scanner inputScan = new Scanner(input);
+    
+    String line = inputScan.nextLine();
+    Scanner scanThisLine = new Scanner(line);
+    int rows = scanThisLine.nextInt();
+    int cols = scanThisLine.nextInt();
+    int time = scanThisLine.nextInt();
+    
+    int[][] oldPasture = new int[rows][cols];
+    int iter = 0;
+    int colFill = 0;
+    while (iter < rows)
+    {
+      colFill = 0;
+      line = inputScan.nextLine();
+      while (colFill < line.length())
+      {
+        if (line.charAt(colFill) == '*') // if tree, mark as -1, otherwise default 0
+        {
+          oldPasture[iter][colFill] = -1;
+        }
+        colFill++;
+      }
+      iter++;
+    }
+    line = inputScan.nextLine();
+    scanThisLine = new Scanner(line);
+    int startRow = scanThisLine.nextInt() - 1;
+    int startCol = scanThisLine.nextInt() - 1;
+    int endRow = scanThisLine.nextInt() - 1;
+    int endCol = scanThisLine.nextInt() - 1;
+    return 0;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
