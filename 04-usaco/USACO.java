@@ -125,6 +125,7 @@ public class USACO
     while (time > 0)
     {
       updateNewField(newPasture, oldPasture);
+      System.out.println(toString(oldPasture));
       updateOldField(newPasture, oldPasture);
       time--;
     }
@@ -282,6 +283,10 @@ public class USACO
             }
           }
         }
+        else
+        {
+          newField[i][j] = -1;
+        }
       }
     }
   }
@@ -302,6 +307,23 @@ public class USACO
         oldField[i][j] = newField[i][j];
       }
     }
+  }
+  public static String toString(int[][] pasture)
+  {
+    String stringRepresentation = "";
+    for (int i = 0; i < pasture.length; i++)
+    {
+      for (int j = 0; j < pasture[i].length; j++)
+      {
+        stringRepresentation += pasture[i][j];
+        if (j != pasture[i].length - 1)
+        {
+          stringRepresentation += ", ";
+        }
+      }
+      stringRepresentation += '\n';
+    }
+    return stringRepresentation;
   }
 }
 
