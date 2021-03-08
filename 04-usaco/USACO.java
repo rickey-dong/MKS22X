@@ -120,12 +120,179 @@ public class USACO
     int startCol = scanThisLine.nextInt() - 1;
     int endRow = scanThisLine.nextInt() - 1;
     int endCol = scanThisLine.nextInt() - 1;
-    return 0;
+    oldPasture[startRow][startCol] = 1; // one cow that starts on start
+    int[][] newPasture = new int[rows][cols];
+    while (time > 0)
+    {
+      updateNewField(newPasture, oldPasture);
+      updateOldField(newPasture, oldPasture);
+      time--;
+    }
+  }
+  public static void updateNewField(int[][] newField, int[][] oldField)
+  {
+    for (int i = 0; i < newField.length; i++)
+    {
+      for (int j = 0; j < newField[i].length; j++)
+      {
+        if (!isTree(i,j))
+        {
+          if (!onBorder(i,j,newField.length,newField[i].length))
+          {
+            newField[i][j] = (oldField[i][j+1] + oldField[i][j-1] + oldField[i+1][j] + oldField[i-1][j]);
+            if (oldField[i][j+1] == -1)
+            {
+              newField[i][j] += 1;
+            }
+            if (oldField[i][j-1] == -1)
+            {
+              newField[i][j] += 1;
+            }
+            if (oldField[i+1][j] == -1)
+            {
+              newField[i][j] += 1;
+            }
+            if (oldField[i-1][j] == -1)
+            {
+              newField[i][j] += 1;
+            }
+          }
+          else
+          {
+            //top left = add right and down
+            if (i == 0 && j == 0)
+            {
+              newField[i][j] = (oldField[i][j+1] + oldField[i+1][j])
+              if (oldField[i][j+1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i+1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            //bottom left = add right and up
+            else if (i == newField.length - 1 && j == 0)
+            {
+              newField[i][j] = (oldField[i][j+1] + oldField[i-1][j]);
+              if (oldField[i][j+1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i-1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            // left = add right down up
+            else if (j == 0)
+            {
+              newField[i][j] = (oldField[i][j+1] + oldField[i+1][j] + oldField[i-1][j]);
+              if (oldField[i][j+1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i+1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i-1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            // top right = add left and down
+            else if (i == 0 && j == newField[i].length - 1)
+            {
+              newField[i][j] = (oldField[i][j-1] + oldField[i+1][j]);
+              if (oldField[i][j-1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i+1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            // top = add left down right
+            else if (i == 0)
+            {
+              newField[i][j] = (oldField[i][j-1] + oldField[i+1][j] + oldField[i][j+1]);
+              if (oldField[i][j-1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i+1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i][j+1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            // bottom right = add up and left 
+            else if (i == newField.length - 1 && j == newField[i].length - 1)
+            {
+              newField[i][j] = (oldField[i-1][j] + oldField[i][j-1]);
+              if (oldField[i-1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i][j-1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            // bottom = add up left right
+            else if (i == newField.length - 1)
+            {
+              newField[i][j] = (oldField[i-1][j] + oldField[i][j-1] + oldField[i][j+1]);
+              if (oldField[i-1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i][j-1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i][j+1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+            // right = add left up down
+            else if (j == newField[i].length - 1)
+            {
+              newField[i][j] = (oldField[i][j-1] + oldField[i-1][j] + oldField[i+1][j]);
+              if (oldField[i][j-1] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i-1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+              if (oldField[i+1][j] == -1)
+              {
+                newField[i][j] += 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  public static boolean isTree(int row, int col, int[][] pasture)
+  {
+    return pasture[row][col] == -1;
+  }
+  public static boolean onBorder(int row, int col, int rows, int cols)
+  {
+    return row == 0 || row == rows - 1 || col == 0 || col == cols - 1;
   }
 }
-
-
-
 
 
 
