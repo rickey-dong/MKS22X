@@ -6,6 +6,7 @@ public class USACOTesterRD
     try
     {
       System.out.println(USACO.bronze("bronzeSample.txt") + " should be 342144");
+      System.out.println(USACO.silver("silverSample.txt") + " should be 1");
     }
     catch(FileNotFoundException e)
     {

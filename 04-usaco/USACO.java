@@ -125,7 +125,6 @@ public class USACO
     while (time > 0)
     {
       updateNewField(newPasture, oldPasture);
-      System.out.println(toString(oldPasture));
       updateOldField(newPasture, oldPasture);
       time--;
     }
@@ -326,28 +325,3 @@ public class USACO
     return stringRepresentation;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
