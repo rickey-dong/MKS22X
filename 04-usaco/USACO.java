@@ -135,7 +135,7 @@ public class USACO
     {
       for (int j = 0; j < newField[i].length; j++)
       {
-        if (!isTree(i,j))
+        if (!isTree(i,j,oldField))
         {
           if (!onBorder(i,j,newField.length,newField[i].length))
           {
@@ -162,7 +162,7 @@ public class USACO
             //top left = add right and down
             if (i == 0 && j == 0)
             {
-              newField[i][j] = (oldField[i][j+1] + oldField[i+1][j])
+              newField[i][j] = (oldField[i][j+1] + oldField[i+1][j]);
               if (oldField[i][j+1] == -1)
               {
                 newField[i][j] += 1;
@@ -291,6 +291,16 @@ public class USACO
   public static boolean onBorder(int row, int col, int rows, int cols)
   {
     return row == 0 || row == rows - 1 || col == 0 || col == cols - 1;
+  }
+  public static void updateOldField(int[][] newField, int[][] oldField)
+  {
+    for (int i = 0; i < oldField.length; i++)
+    {
+      for (int j = 0; j < oldField[i].length; j++)
+      {
+        oldField[i][j] = newField[i][j];
+      }
+    }
   }
 }
 
