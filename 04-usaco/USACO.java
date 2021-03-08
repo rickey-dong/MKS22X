@@ -128,6 +128,7 @@ public class USACO
       updateOldField(newPasture, oldPasture);
       time--;
     }
+    return newPasture[endRow][endCol];
   }
   public static void updateNewField(int[][] newField, int[][] oldField)
   {
