@@ -13,10 +13,22 @@ public class Preliminary
     //at the very last element, if it's greater than p, p gets inserted right before it/swapped
     //if it's smaller than p, it gets swapper w/ p.
     //return current index of p;
-    int pivotIndex = (int) (Math.random() * ( (end+1) - start + 1) + start); //index of the pivot
-    System.out.println(pivotIndex);
+    int pivotIndex = (int) (Math.random() * (end - start + 1) + start); //index of the pivot
+    //System.out.println(pivotIndex);
+    if (pivotIndex < start || pivotIndex > end)
+    {
+      System.out.println("ERROR ERROR ERROR");
+      if (pivotIndex < start)
+      {
+        System.out.println("IT IS LESS THAN START");
+      }
+      else
+      {
+        System.out.println("IT IS GREATER THAN END");
+      }
+    }
     int pivot = data[pivotIndex]; //actual pivot
-    System.out.println(pivot);                       //DELETE DELETE DELETE
+    //System.out.println(pivot);                       //DELETE DELETE DELETE
     int swap = data[pivotIndex];
     data[pivotIndex] = data[start];
     data[start] = swap;
