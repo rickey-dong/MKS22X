@@ -14,21 +14,8 @@ public class Preliminary
     //if it's smaller than p, it gets swapper w/ p.
     //return current index of p;
     int pivotIndex = (int) (Math.random() * (end - start + 1) + start); //index of the pivot
-    //System.out.println(pivotIndex);
-    if (pivotIndex < start || pivotIndex > end)
-    {
-      System.out.println("ERROR ERROR ERROR");
-      if (pivotIndex < start)
-      {
-        System.out.println("IT IS LESS THAN START");
-      }
-      else
-      {
-        System.out.println("IT IS GREATER THAN END");
-      }
-    }
     int pivot = data[pivotIndex]; //actual pivot
-    //System.out.println(pivot);                       //DELETE DELETE DELETE
+    System.out.println(pivot + " is the value of the pivot");                       //DELETE DELETE DELETE
     int swap = data[pivotIndex];
     data[pivotIndex] = data[start];
     data[start] = swap;
