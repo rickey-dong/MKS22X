@@ -13,7 +13,13 @@ public class Preliminary
     //at the very last element, if it's greater than p, p gets inserted right before it/swapped
     //if it's smaller than p, it gets swapper w/ p.
     //return current index of p;
-    int pivotIndex = (int) (Math.random() * (end - start + 1) + start); //index of the pivot
+    //int pivotIndex = ((int) (Math.random() * (end - start + 1)))+ start; //index of the pivot
+    if (start == end)
+    {
+      return start;
+    }
+    int pivotIndex = new Random().nextInt((end-start) + 1) + start;
+    System.out.println(pivotIndex);
     int pivot = data[pivotIndex]; //actual pivot
     System.out.println(pivot + " is the value of the pivot");                       //DELETE DELETE DELETE
     int swap = data[pivotIndex];
@@ -21,8 +27,10 @@ public class Preliminary
     data[start] = swap;
     pivot = data[start]; //now pivot is at the beginning of the array, we don't care about pivotIndex any more
     int current = start+1;
-    while (current != end)
+    //boolean wentInLoop = false;
+    while (current < end)
     {
+      //wentInLoop = true;
       if (data[current] < pivot)
       {
         current++;
