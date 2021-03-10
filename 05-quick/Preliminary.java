@@ -14,7 +14,9 @@ public class Preliminary
     //if it's smaller than p, it gets swapper w/ p.
     //return current index of p;
     int pivotIndex = (int) (Math.random() * ( (end+1) - start + 1) + start); //index of the pivot
+    System.out.println(pivotIndex);
     int pivot = data[pivotIndex]; //actual pivot
+    System.out.println(pivot);                       //DELETE DELETE DELETE
     int swap = data[pivotIndex];
     data[pivotIndex] = data[start];
     data[start] = swap;
