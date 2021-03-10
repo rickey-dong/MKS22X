@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Preliminary
 {
   public static int partition(int[] data, int start, int end)
@@ -12,5 +13,55 @@ public class Preliminary
     //at the very last element, if it's greater than p, p gets inserted right before it/swapped
     //if it's smaller than p, it gets swapper w/ p.
     //return current index of p;
+    int pivotIndex = (int) (Math.random() * ( (end+1) - start + 1) + start); //index of the pivot
+    int pivot = data[pivotIndex]; //actual pivot
+    int swap = data[pivotIndex];
+    data[pivotIndex] = data[start];
+    data[start] = swap;
+    pivot = data[start]; //now pivot is at the beginning of the array, we don't care about pivotIndex any more
+    int current = start+1;
+    while (current != end)
+    {
+      if (data[current] < pivot)
+      {
+        current++;
+      }
+      else if (data[current] > pivot)
+      {
+        swap = data[end];
+        data[end] = data[current];
+        data[current] = swap;
+        end--;
+      }
+      else
+      {
+        Random r = new Random();
+        if (r.nextBoolean())
+        {
+          current++;
+        }
+        else
+        {
+          swap = data[end];
+          data[end] = data[current];
+          data[current] = swap;
+          end--;
+        }
+      }
+    }
+    if (data[current] > pivot)
+    {
+      swap = data[start];
+      data[start] = data[current-1];
+      data[current-1] = swap;
+      current--;
+    }
+    else
+    {
+      swap = data[start];
+      data[start] = data[current];
+      data[current] = swap;
+    }
+    return current;
   }
 }
