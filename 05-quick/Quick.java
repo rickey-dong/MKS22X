@@ -7,13 +7,13 @@ public class Quick
     {
       return lo;
     }
-    Random r = new Random();
-    int pivotIndex = r.nextInt((hi-lo) + 1) + lo;
+    int pivotIndex = new Random().nextInt((hi-lo) + 1) + lo;
     int swap = data[pivotIndex];
     data[pivotIndex] = data[lo];
     data[lo] = swap;
     int pivot = data[lo];
     int current = lo+1;
+    boolean swapEqual = false;
     while (current < hi)
     {
       if (data[current] < pivot)
@@ -29,9 +29,10 @@ public class Quick
       }
       else
       {
-        if (r.nextBoolean())
+        if (swapEqual)
         {
           current++;
+          swapEqual = !swapEqual;
         }
         else
         {
@@ -39,6 +40,7 @@ public class Quick
           data[hi] = data[current];
           data[current] = swap;
           hi--;
+          swapEqual = !swapEqual;
         }
       }
     }
@@ -77,8 +79,19 @@ public class Quick
     }
     return data[k];
   }
-  
-  
+  public static void quicksort(int[] data)
+  {
+    quicksort(data, 0, data.length-1);
+  }
+  public static void quicksort(int[] data, int lo, int hi)
+  {
+    if (lo < hi)
+    {
+      int pivotIndex = partition(data, lo, hi);
+      quicksort(data, pivotIndex + 1, hi);
+      quicksort(data, lo, pivotIndex - 1);
+    }
+  }
   
   
   
