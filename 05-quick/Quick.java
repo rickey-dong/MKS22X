@@ -7,7 +7,8 @@ public class Quick
     {
       return lo;
     }
-    int pivotIndex = new Random().nextInt((hi-lo) + 1) + lo;
+    Random r = new Random();
+    int pivotIndex = r.nextInt((hi-lo) + 1) + lo;
     int swap = data[pivotIndex];
     data[pivotIndex] = data[lo];
     data[lo] = swap;
@@ -28,7 +29,6 @@ public class Quick
       }
       else
       {
-        Random r = new Random();
         if (r.nextBoolean())
         {
           current++;
@@ -57,4 +57,53 @@ public class Quick
     }
     return current;
   }
+  public static int quickselect(int[] data, int k)
+  {
+    int start = 0;
+    int end = data.length - 1;
+    int potentiallyCorrectIndex = partition(data, start, end);
+    while (potentiallyCorrectIndex != k)
+    {
+      if (potentiallyCorrectIndex < k)
+      {
+        start = potentiallyCorrectIndex+1;
+        potentiallyCorrectIndex = partition(data, start, end);
+      }
+      else
+      {
+        end = potentiallyCorrectIndex-1;
+        potentiallyCorrectIndex = partition(data, start, end);
+      }
+    }
+    return data[k];
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
