@@ -17,8 +17,12 @@ public class Merge
   }
   public static void merge(int[] data, int group0Low, int group0High, int group1Low, int group1High)
   {
-    int[] thirdPile = new int[group1High+1];
+    int[] thirdPile = new int[group1High-group0Low + 1];
     int iter = 0;
+    int a_low = group0Low;
+    int a_high = group0High;
+    int b_low = group1Low;
+    int b_high = group1High;
     while (group0Low <= group0High && group1Low <= group1High)
     {
       if (data[group0Low] < data[group1Low])
@@ -46,9 +50,18 @@ public class Merge
       iter++;
       group1Low++;
     }
-    for (int i = 0; i < iter; i++)
+    int iter0 = 0;
+    while (a_low <= a_high)
     {
-      data[i] = thirdPile[i];
+      data[a_low] = thirdPile[iter0];
+      iter0++;
+      a_low++;
+    }
+    while (b_low <= b_high)
+    {
+      data[b_low] = thirdPile[iter0];
+      iter0++;
+      b_low++;
     }
   }
 }
