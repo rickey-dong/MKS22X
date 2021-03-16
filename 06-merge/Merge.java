@@ -12,7 +12,6 @@ public class Merge
       mergesort(data, lo, (lo+hi)/2);
       mergesort(data, ((lo+hi)/2)+1, hi);
       merge(data, lo, (lo+hi)/2, ((lo+hi)/2+1), hi);
-      System.out.println(Arrays.toString(data));
     }
   }
   public static void merge(int[] data, int group0Low, int group0High, int group1Low, int group1High)
