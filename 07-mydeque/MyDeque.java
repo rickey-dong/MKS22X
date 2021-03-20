@@ -14,4 +14,8 @@ public class MyDeque<E>
     E[] d = (E[])new Object[initialCapacity];
     data = d;
   }
+  public int size()
+  {
+    return size;
+  }
 }
