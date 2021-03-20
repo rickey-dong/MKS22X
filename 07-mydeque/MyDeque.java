@@ -8,4 +8,10 @@ public class MyDeque<E>
     E[] d = (E[])new Object[10];
     data = d;
   }
+  public MyDeque(int initialCapacity)
+  {
+    @SuppressWarnings("unchecked")
+    E[] d = (E[])new Object[initialCapacity];
+    data = d;
+  }
 }
