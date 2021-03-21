@@ -90,6 +90,8 @@ public class MyDequeTesterRD
     System.out.println(testing.toString());
     System.out.println(testing.getFirst() + " should be 3");
     System.out.println(testing.removeFirst() + " should be 3");
-    System.out.println(testing.toString());
+    System.out.println(testing.getFirst() + " should be 2");
+    System.out.println(testing.getLast() + " should be 6");
+    System.out.println(testing.toString() + " should be {2, 1, 0, 6}");
   }
 }

@@ -97,8 +97,9 @@ public class MyDeque<E>
     }
     else //this means you didn't add anything from the start, but you did add things from the back
     {
-      removedThis = data[end+size]; // the last element is the head when you only added from the back and more math manip
+      removedThis = data[data.length-end]; // the last element is the head when you only added from the back
       size--;
+      end++;
     }//size decreases and pointer moves around
     return removedThis;
   }
@@ -160,7 +161,7 @@ public class MyDeque<E>
         }
       }
     }
-    for (int i = size - 1; i > end; i--)
+    for (int i = data.length - 1; i > end; i--)
     {
       if (data[i] != null)
       {
