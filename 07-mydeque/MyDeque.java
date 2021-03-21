@@ -24,6 +24,11 @@ public class MyDeque<E>
     start = 0; //start is 0
     end = 0;
     size = 0; //currently no elements in there so far
+    if (data.length == 0)
+    {
+      start = -1;
+      end = -1;
+    }
   }
   public int size()
   {
@@ -82,30 +87,39 @@ public class MyDeque<E>
     @SuppressWarnings("unchecked")
     E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //make a larger deque
     int indexOfLarger = 0;
-    if (start >= end)
+    if (data.length != 0)
     {
-      for (int i = start; i < data.length; i++)
+      if (start >= end)
       {
-        largerDeque[indexOfLarger] = data[i];
-        indexOfLarger++;
+        for (int i = start; i < data.length; i++)
+        {
+          largerDeque[indexOfLarger] = data[i];
+          indexOfLarger++;
+        }
+        for (int i = 0; i <= end; i++)
+        {
+          largerDeque[indexOfLarger] = data[i];
+          indexOfLarger++;
+        }
       }
-      for (int i = 0; i <= end; i++)
+      else
       {
-        largerDeque[indexOfLarger] = data[i];
-        indexOfLarger++;
+        for (int i = start; i <= end; i++)
+        {
+          largerDeque[indexOfLarger] = data[i];
+          indexOfLarger++;
+        }
       }
+      data = largerDeque;
+      start = 0;
+      end = size() - 1;
     }
     else
     {
-      for (int i = start; i <= end; i++)
-      {
-        largerDeque[indexOfLarger] = data[i];
-        indexOfLarger++;
-      }
+      data = largerDeque;
+      start = 0;
+      end = 0;
     }
-    data = largerDeque;
-    start = 0;
-    end = size() - 1;
   }
   public E removeFirst()
   {

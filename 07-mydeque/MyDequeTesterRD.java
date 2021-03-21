@@ -96,5 +96,12 @@ public class MyDequeTesterRD
     System.out.println(testing.removeFirst() + " should be 2");
     System.out.println(testing.removeLast() + " should be 6");
     System.out.println(testing.toString() + " should be {1, 0}");
+    
+    System.out.println("===============================================");
+    
+    MyDeque<Integer> negative = new MyDeque<Integer>(-5);
+    negative.addFirst(2);
+    negative.addLast(5);
+    System.out.println(negative.toString() + " should be {2, 5}");
   }
 }
