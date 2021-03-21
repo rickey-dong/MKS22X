@@ -27,4 +27,17 @@ public class MyDeque<E>
   {
     return size;
   }
+  public void addFirst(E element)
+  {
+    if (element == null)
+    {
+      throw new NullPointerException("this deque does not permit null elements");
+    }
+    if (start == end - 1)
+    {
+      //resize
+    }
+    data[start+1] = element;
+    start++;
+  }
 }
