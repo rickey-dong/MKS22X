@@ -36,7 +36,7 @@ public class MyDeque<E>
     {
       throw new NullPointerException("this deque does not permit null elements");
     }
-    if (start == end - 1 || start == end)
+    if (size == data.length)
     {
       resize();
     }
@@ -50,7 +50,7 @@ public class MyDeque<E>
     {
       throw new NullPointerException("this deque does not permit null elements");
     }
-    if (start == end - 1 || start == end)
+    if (size == data.length)
     {
       resize();
     }
@@ -60,6 +60,8 @@ public class MyDeque<E>
   }
   private void resize()
   {
+    start--;
+    end++;
     @SuppressWarnings("unchecked")
     E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //3
     for (int i = 0; i <= start; i++)
@@ -88,6 +90,8 @@ public class MyDeque<E>
       end = 0;
     }
     data = largerDeque;
+    start++;
+    end--;
   }
   public E removeFirst()
   {
@@ -129,17 +133,13 @@ public class MyDeque<E>
   }
   public String toString()
   {
-    if (size == 0)
-    {
-      return "{}";
-    }
     String representation = "{";
     for (int i = 0; i < start; i++)
     {
       if (data[i] != null)
       {
         representation += data[i];
-        if (data[end] != null)
+        if (end != data.length - 1 && data[end+1] != null)
         {
           representation += ", ";
         }

@@ -43,5 +43,7 @@ public class MyDequeTesterRD
     }
     numbers.addFirst(6);
     System.out.println(numbers.toString() + " should be {6}");
+    numbers.addLast(8);
+    System.out.println(numbers.toString() + " should be {6, 8}");
   }
 }
