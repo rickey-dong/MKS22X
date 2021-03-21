@@ -40,4 +40,17 @@ public class MyDeque<E>
     data[start+1] = element;
     start++;
   }
+  public void addLast(E element)
+  {
+    if (element == null)
+    {
+      throw new NullPointerException("this deque does not permit null elements");
+    }
+    if (start == end - 1)
+    {
+      //resize
+    }
+    data[end-1] = element;
+    end--;
+  }
 }
