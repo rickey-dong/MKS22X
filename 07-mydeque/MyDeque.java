@@ -151,26 +151,3 @@ public class MyDeque<E>
     return representation;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
