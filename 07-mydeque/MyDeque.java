@@ -111,6 +111,14 @@ public class MyDeque<E>
     size--;
     return removedThis;
   }
+  public E getFirst()
+  {
+    if (size == 0)
+    {
+      throw new NoSuchElementException("this deque is empty");
+    }
+    return data[start];
+  }
 }
 
 
