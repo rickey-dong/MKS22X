@@ -9,21 +9,20 @@ public class MyDeque<E>
     E[] d = (E[])new Object[10]; //default capacity 10
     data = d;
     size = 0; //there are no elements in there so far
-    start = 0; //start is 0
-    end = 9; //end is 9
+    start = 0;
+    end = 0;
   }
   public MyDeque(int initialCapacity) //user chooses capacity
   {
+    if (initialCapacity < 0)
+    {
+      initialCapacity = 0;
+    }
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
     start = 0; //start is 0
-    end = data.length - 1; //end is the last index
-    if (initialCapacity == 0) //unless the capacity is 0, in which case make them -1
-    {
-      end = -1;
-      start = -1;
-    }
+    end = 0;
     size = 0; //currently no elements in there so far
   }
   public int size()
@@ -40,8 +39,18 @@ public class MyDeque<E>
     {
       resize();
     }
+    if (size != 0)
+    {
+      if (start == 0)
+      {
+        start = data.length - 1;
+      }
+      else
+      {
+        start--;
+      }
+    }
     data[start] = element; //insert the element
-    start++; //start moves one index to the right 
     size++; //size increases by 1
   }
   public void addLast(E element)
@@ -54,33 +63,49 @@ public class MyDeque<E>
     {
       resize();
     }
+    if (size != 0)
+    {
+      if (end == data.length - 1)
+      {
+        end = 0;
+      }
+      else
+      {
+        end++;
+      }
+    }
     data[end] = element; //insert the element
-    end--; //end moves one index to the left
     size++; //size increases by 1
   }
   private void resize()
   {
     @SuppressWarnings("unchecked")
     E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //make a larger deque
-    if (data.length == 0) //math manip to prevent indexing errors with -1
+    int indexOfLarger = 0;
+    if (start >= end)
     {
-      start = 0;
-      end = 0;
+      for (int i = start; i < data.length; i++)
+      {
+        largerDeque[indexOfLarger] = data[i];
+        indexOfLarger++;
+      }
+      for (int i = 0; i <= end; i++)
+      {
+        largerDeque[indexOfLarger] = data[i];
+        indexOfLarger++;
+      }
     }
-    for (int i = 0; i <= start-1; i++)
+    else
     {
-      largerDeque[i] = data[i]; //transplant the elements from the beginning into the larger deque
+      for (int i = start; i <= end; i++)
+      {
+        largerDeque[indexOfLarger] = data[i];
+        indexOfLarger++;
+      }
     }
-    int oldLength = data.length-1;
-    int newEnding = largerDeque.length - 1; //math manip to set up the transferring of the elements from the end
-    for (int i = largerDeque.length - 1; oldLength > end; oldLength--)
-    {
-      largerDeque[i] = data[oldLength];
-      i--;
-      newEnding = i; //transplant the elements from the end into the larger deque
-    }
-    end = newEnding; //new pointer for end in the larger deque but start stays the same
-    data = largerDeque; //we have a new larger deque
+    data = largerDeque;
+    start = 0;
+    end = size() - 1;
   }
   public E removeFirst()
   {
@@ -88,19 +113,19 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty"); //can't remove thin air
     }
-    E removedThis;
-    if (start != 0)
+    E removedThis = data[start];
+    if (size != -1)
     {
-      removedThis = data[start-1]; //remove the element that was one index behind start and move start down
-      start--;
-      size--;
+      if (start == data.length - 1)
+      {
+        start = 0;
+      }
+      else
+      {
+        start++;
+      }
     }
-    else //this means you didn't add anything from the start, but you did add things from the back
-    {
-      removedThis = data[data.length-end]; // the last element is the head when you only added from the back
-      size--;
-      end++;
-    }//size decreases and pointer moves around
+    size--;
     return removedThis;
   }
   public E removeLast()
@@ -109,18 +134,19 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    E removedThis;
-    if (end != data.length -1)
+    E removedThis = data[end];
+    if (size != -1)
     {
-      removedThis = data[end+1];
-      end++;
-      size--;
+      if (end == 0)
+      {
+        end = data.length -1;
+      }
+      else
+      {
+        end--;
+      }
     }
-    else //this means you only added from start and not from end
-    {
-      removedThis = data[Math.abs(size-start)];
-      size--;
-    }
+    size--;
     return removedThis;
   }
   public E getFirst()
@@ -129,11 +155,7 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    if (start == 0) //this means we only added from back
-    {
-      return data[data.length-1];
-    }
-    return data[start-1];
+    return data[start];
   }
   public E getLast()
   {
@@ -141,40 +163,23 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    if (end == data.length - 1) //this means we only added from front
-    {
-      return data[0];
-    }
-    return data[end+1];
+    return data[end];
   }
   public String toString()
   {
     String representation = "{";
-    for (int i = start-1; i >= 0; i--)
+    int startPos = start;
+    for (int i = 0; i < size; i++)
     {
-      if (data[i] != null)
+      if (i != size -1)
       {
-        representation += data[i];
-        if (i != 0 || end != data.length - 1 && data[end+1] != null)
-        {
-          representation += ", ";
-        }
+        representation += data[startPos % data.length] + ", ";
       }
-    }
-    for (int i = data.length - 1; i > end; i--)
-    {
-      if (data[i] != null)
+      else
       {
-        if (i != end + 1)
-        {
-          representation += data[i];
-          representation += ", ";
-        }
-        else
-        {
-          representation += data[i];
-        }
+        representation += data[startPos % data.length];
       }
+      startPos++;
     }
     representation += "}";
     return representation;
