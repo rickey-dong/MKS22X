@@ -77,5 +77,19 @@ public class MyDequeTesterRD
     numbers2.addFirst(6);
     numbers2.addFirst(7);
     System.out.println(numbers2.toString());
+    
+    System.out.println("==================================================");
+    
+    MyDeque<Integer> testing = new MyDeque<Integer>(5);
+    testing.addLast(3);
+    testing.addLast(2);
+    testing.addLast(1);
+    testing.addLast(0);
+    testing.addLast(6);
+    //{3,2,1,0,6}
+    System.out.println(testing.toString());
+    System.out.println(testing.getFirst() + " should be 3");
+    System.out.println(testing.removeFirst() + " should be 3");
+    System.out.println(testing.toString());
   }
 }
