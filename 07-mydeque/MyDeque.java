@@ -119,6 +119,14 @@ public class MyDeque<E>
     }
     return data[start];
   }
+  public E getLast()
+  {
+    if (size == 0)
+    {
+      throw new NoSuchElementException("this deque is empty");
+    }
+    return data[end];
+  }
 }
 
 
