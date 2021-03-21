@@ -7,10 +7,10 @@ public class MyDeque<E>
   {
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10]; //default capacity 10
-    data = d;
-    size = 0; //there are no elements in there so far
-    start = 0;
-    end = 0;
+    this.data = d;
+    this.size = 0; //there are no elements in there so far
+    this.start = 0;
+    this.end = 0;
   }
   public MyDeque(int initialCapacity) //user chooses capacity
   {
@@ -20,19 +20,19 @@ public class MyDeque<E>
     }
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
-    data = d;
-    start = 0; //start is 0
-    end = 0;
-    size = 0; //currently no elements in there so far
+    this.data = d;
+    this.start = 0; //start is 0
+    this.end = 0;
+    this.size = 0; //currently no elements in there so far
     if (data.length == 0)
     {
-      start = -1;
-      end = -1;
+      this.start = -1;
+      this.end = -1;
     }
   }
   public int size()
   {
-    return size; //return size
+    return this.size; //return size
   }
   public void addFirst(E element)
   {
