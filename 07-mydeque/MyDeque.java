@@ -16,7 +16,7 @@ public class MyDeque<E>
   {
     if (initialCapacity < 0)
     {
-      initialCapacity = 0;
+      initialCapacity = 0; //negative should work
     }
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
@@ -43,16 +43,16 @@ public class MyDeque<E>
     if (size == data.length) //we have no more space
     {
       resize();
-    }
-    if (size != 0)
+    } //we now have space
+    if (size != 0)  //if there are already some elements in there, ... BUT if there are no elements, just add at [0] line 58
     {
-      if (start == 0)
+      if (start == 0) //if start is already at [0], wrap around to the end of the array
       {
-        start = data.length - 1;
+        start = data.length - 1; //wrap around
       }
       else
       {
-        start--;
+        start--; //if you have already wrapped around, go left
       }
     }
     data[start] = element; //insert the element
@@ -67,16 +67,16 @@ public class MyDeque<E>
     if (size == data.length) //we have no more space
     {
       resize();
-    }
-    if (size != 0)
+    } //we now have space
+    if (size != 0) //if there are no elements, just add at [0], BUT if there are already, ...
     {
-      if (end == data.length - 1)
+      if (end == data.length - 1) //if you're at the end of the array, wrap around
       {
-        end = 0;
+        end = 0; //to the beginning
       }
       else
       {
-        end++;
+        end++; // just keep going right
       }
     }
     data[end] = element; //insert the element
@@ -87,7 +87,7 @@ public class MyDeque<E>
     @SuppressWarnings("unchecked")
     E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //make a larger deque
     int indexOfLarger = 0;
-    if (data.length != 0)
+    if (data.length != 0) //transplant the elements to the larger deque
     {
       if (start >= end)
       {
@@ -114,7 +114,7 @@ public class MyDeque<E>
       start = 0;
       end = size() - 1;
     }
-    else
+    else //TO PREVENT out of bounds errors for negatives and zeroes sizes
     {
       data = largerDeque;
       start = 0;
@@ -127,37 +127,37 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty"); //can't remove thin air
     }
-    E removedThis = data[start];
-    if (size != -1)
+    E removedThis = data[start]; //you're not actually removing it, just ignoring it
+    if (size != -1) //but if size IS 1, just decrease size and ignore that removed one
     {
-      if (start == data.length - 1)
+      if (start == data.length - 1) // once you remove the head at the very end, wrap around so that the head is now at the beginning
       {
         start = 0;
       }
       else
       {
-        start++;
+        start++; //new start position keeps going right
       }
     }
-    size--;
+    size--; //size decreases because an element was removed
     return removedThis;
   }
   public E removeLast()
   {
     if (size == 0)
     {
-      throw new NoSuchElementException("this deque is empty");
+      throw new NoSuchElementException("this deque is empty"); //can't remove thin air
     }
-    E removedThis = data[end];
-    if (size != -1)
+    E removedThis = data[end]; //"remove"
+    if (size != -1) //just decrease the size if it is size 1
     {
-      if (end == 0)
+      if (end == 0) //if tail was at beginning, wrap around so new tail is at the very end
       {
         end = data.length -1;
       }
       else
       {
-        end--;
+        end--; // new end position goes left
       }
     }
     size--;
@@ -169,7 +169,7 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    return data[start];
+    return data[start]; //get element at start
   }
   public E getLast()
   {
@@ -177,7 +177,7 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    return data[end];
+    return data[end]; //get element at end
   }
   public String toString()
   {
@@ -186,12 +186,13 @@ public class MyDeque<E>
     for (int i = 0; i < size; i++)
     {
       if (i != size -1)
-      {
+      { //modulus property: if start < end, then it'll just go linearly, but otherwise it'll use remainder to loop around since
+      // 3 9 6 where 9 is start and 3 is end, when start becomes index 3, 3 % 3 = 0, where index 0 is 3, the ending portion 
         representation += data[startPos % data.length] + ", ";
       }
       else
       {
-        representation += data[startPos % data.length];
+        representation += data[startPos % data.length]; //don't add comma if last element
       }
       startPos++;
     }
