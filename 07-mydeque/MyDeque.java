@@ -100,6 +100,17 @@ public class MyDeque<E>
     size--;
     return removedThis;
   }
+  public E removeLast()
+  {
+    if (size == 0)
+    {
+      throw new NoSuchElementException("this deque is empty");
+    }
+    E removedThis = data[end];
+    end++;
+    size--;
+    return removedThis;
+  }
 }
 
 
