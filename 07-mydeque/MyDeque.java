@@ -1,5 +1,4 @@
 import java.util.NoSuchElementException;
-import java.util.Arrays;
 public class MyDeque<E>
 {
   private E[] data;
@@ -132,7 +131,7 @@ public class MyDeque<E>
     }
     if (start == 0)
     {
-      return data[end+1];
+      return data[data.length-1];
     }
     return data[start-1];
   }
@@ -144,7 +143,7 @@ public class MyDeque<E>
     }
     if (end == data.length - 1)
     {
-      return data[start-1];
+      return data[0];
     }
     return data[end+1];
   }
