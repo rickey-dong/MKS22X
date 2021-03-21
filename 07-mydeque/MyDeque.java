@@ -20,8 +20,10 @@ public class MyDeque<E>
     end = data.length - 1;
     if (initialCapacity == 0)
     {
-      end = 0;
+      end = -1;
+      start = -1;
     }
+    size = 0;
   }
   public int size()
   {
@@ -33,12 +35,13 @@ public class MyDeque<E>
     {
       throw new NullPointerException("this deque does not permit null elements");
     }
-    if (start == end - 1)
+    if (start == end - 1 || start == end)
     {
       resize();
     }
     data[start+1] = element;
     start++;
+    size++;
   }
   public void addLast(E element)
   {
@@ -46,29 +49,48 @@ public class MyDeque<E>
     {
       throw new NullPointerException("this deque does not permit null elements");
     }
-    if (start == end - 1)
+    if (start == end - 1 || start == end)
     {
       resize();
     }
     data[end-1] = element;
     end--;
+    size++;
   }
   private void resize()
   {
     @SuppressWarnings("unchecked")
-    E[] largerDeque = (E[])new Object[(data.length * 2) + 1];
+    E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //3
     for (int i = 0; i <= start; i++)
     {
       largerDeque[i] = data[i];
     }
-    int ending = end;
-    end = largerDeque.length - ending;
-    for (int i = largerDeque.length - ending; i < largerDeque.length; i++)
+    int ending = end; //0
+    if (end == 0)
+    {
+      ending++;
+      end = largerDeque.length - ending; //2  
+      ending--;
+    }
+    else
+    {
+      end = largerDeque.length - ending;
+    }
+    for (int i = end; i < largerDeque.length; i++)
     {
       largerDeque[i] = data[ending];
       ending++;
     }
+    if (data.length == 0)
+    {
+      start = 0;
+      end = 0;
+    }
     data = largerDeque;
+  }
+  public E removeFirst()
+  {
+    
   }
 }
 
