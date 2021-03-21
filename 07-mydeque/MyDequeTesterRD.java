@@ -3,7 +3,7 @@ public class MyDequeTesterRD
 {
   public static void main(String[] args)
   {
-    MyDeque<Integer> numbers = new MyDeque<Integer>();
+    MyDeque<Integer> numbers = new MyDeque<Integer>(4);
     System.out.println(numbers.toString() + " should be {}");
     try{
       System.out.println(numbers.getFirst());
@@ -45,5 +45,12 @@ public class MyDequeTesterRD
     System.out.println(numbers.toString() + " should be {6}");
     numbers.addLast(8);
     System.out.println(numbers.toString() + " should be {6, 8}");
+    System.out.println(numbers.getFirst() + " should be 6");
+    System.out.println(numbers.getLast() + " should be 8");
+    numbers.addFirst(10);
+    System.out.println(numbers.getFirst() + " should be 10");
+    numbers.addLast(559);
+    System.out.println(numbers.getLast() + " should be 559");
+    System.out.println(numbers.toString() + " should be {10, 6, 8, 559}");
   }
 }

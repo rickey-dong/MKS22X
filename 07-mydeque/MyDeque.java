@@ -121,7 +121,7 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    return data[start];
+    return data[start-1];
   }
   public E getLast()
   {
@@ -129,12 +129,12 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    return data[end];
+    return data[end+1];
   }
   public String toString()
   {
     String representation = "{";
-    for (int i = 0; i < start; i++)
+    for (int i = start-1; i >= 0; i--)
     {
       if (data[i] != null)
       {
@@ -145,11 +145,11 @@ public class MyDeque<E>
         }
       }
     }
-    for (int i = end; i < data.length; i++)
+    for (int i = data.length - 1; i > end; i--)
     {
       if (data[i] != null)
       {
-        if (i != data.length - 1)
+        if (i != end + 1)
         {
           representation += data[i];
           representation += ", ";
