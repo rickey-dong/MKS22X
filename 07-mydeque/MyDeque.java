@@ -35,7 +35,7 @@ public class MyDeque<E>
     }
     if (start == end - 1)
     {
-      //resize
+      resize();
     }
     data[start+1] = element;
     start++;
@@ -48,9 +48,49 @@ public class MyDeque<E>
     }
     if (start == end - 1)
     {
-      //resize
+      resize();
     }
     data[end-1] = element;
     end--;
   }
+  private void resize()
+  {
+    @SuppressWarnings("unchecked")
+    E[] largerDeque = (E[])new Object[(data.length * 2) + 1];
+    for (int i = 0; i <= start; i++)
+    {
+      largerDeque[i] = data[i];
+    }
+    int ending = end;
+    end = largerDeque.length - ending;
+    for (int i = largerDeque.length - ending; i < largerDeque.length; i++)
+    {
+      largerDeque[i] = data[ending];
+      ending++;
+    }
+    data = largerDeque;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
