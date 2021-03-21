@@ -40,7 +40,7 @@ public class MyDeque<E>
     {
       resize();
     }
-    data[start+1] = element;
+    data[start] = element;
     start++;
     size++;
   }
@@ -54,7 +54,7 @@ public class MyDeque<E>
     {
       resize();
     }
-    data[end-1] = element;
+    data[end] = element;
     end--;
     size++;
   }
@@ -134,21 +134,30 @@ public class MyDeque<E>
       return "{}";
     }
     String representation = "{";
-    for (int i = 0; i <= start; i++)
+    for (int i = 0; i < start; i++)
     {
-      representation += data[i];
-      representation += ", ";
+      if (data[i] != null)
+      {
+        representation += data[i];
+        if (data[end] != null)
+        {
+          representation += ", ";
+        }
+      }
     }
     for (int i = end; i < data.length; i++)
     {
-      if (i != data.length - 1)
+      if (data[i] != null)
       {
-        representation += data[i];
-        representation += ", ";
-      }
-      else
-      {
-        representation += data[i];
+        if (i != data.length - 1)
+        {
+          representation += data[i];
+          representation += ", ";
+        }
+        else
+        {
+          representation += data[i];
+        }
       }
     }
     representation += "}";

@@ -29,5 +29,19 @@ public class MyDequeTesterRD
     catch(NoSuchElementException e) {
       System.out.println(e + " should be an error");
     }
+    try{
+      numbers.addFirst(null);
+    }
+    catch(NullPointerException e) {
+      System.out.println(e + " should be an error");
+    }
+    try{
+      numbers.addLast(null);
+    }
+    catch(NullPointerException e) {
+      System.out.println(e + " should be an error");
+    }
+    numbers.addFirst(6);
+    System.out.println(numbers.toString() + " should be {6}");
   }
 }
