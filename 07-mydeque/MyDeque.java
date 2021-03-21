@@ -129,6 +129,10 @@ public class MyDeque<E>
   }
   public String toString()
   {
+    if (size == 0)
+    {
+      return "{}";
+    }
     String representation = "{";
     for (int i = 0; i <= start; i++)
     {
