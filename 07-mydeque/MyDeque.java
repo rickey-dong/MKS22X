@@ -60,15 +60,15 @@ public class MyDeque<E>
   }
   private void resize()
   {
-    start--;
-    end++;
+    System.out.println(start);
+    System.out.println(end);
     @SuppressWarnings("unchecked")
     E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //3
-    for (int i = 0; i <= start; i++)
+    for (int i = 0; i <= start-1; i++)
     {
       largerDeque[i] = data[i];
     }
-    int ending = end; //0
+    int ending = end; //10
     if (end == 0)
     {
       ending++;
@@ -77,11 +77,14 @@ public class MyDeque<E>
     }
     else
     {
-      end = largerDeque.length - ending;
+      end = largerDeque.length - ending; //11
     }
-    for (int i = end; i < largerDeque.length; i++)
+    for (int i = end; i < data.length; i++)
     {
-      largerDeque[i] = data[ending];
+      System.out.println(i);
+      System.out.println(largerDeque.length);
+      System.out.println(ending);
+      largerDeque[i+data.length+1] = data[ending];
       ending++;
     }
     if (data.length == 0)
@@ -90,8 +93,6 @@ public class MyDeque<E>
       end = 0;
     }
     data = largerDeque;
-    start++;
-    end--;
   }
   public E removeFirst()
   {
@@ -158,7 +159,7 @@ public class MyDeque<E>
       if (data[i] != null)
       {
         representation += data[i];
-        if (end != data.length - 1 && data[end+1] != null)
+        if (i != 0 || end != data.length - 1 && data[end+1] != null)
         {
           representation += ", ";
         }

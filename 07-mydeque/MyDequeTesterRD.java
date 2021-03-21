@@ -67,5 +67,15 @@ public class MyDequeTesterRD
     catch(NoSuchElementException e) {
       System.out.println(e + " should be an error");
     }
+    
+    //
+    
+    System.out.println("==================================================");
+    MyDeque<Integer> numbers2 = new MyDeque<Integer>(4);
+    numbers2.addFirst(4);
+    numbers2.addFirst(5);
+    numbers2.addFirst(6);
+    numbers2.addFirst(7);
+    System.out.println(numbers2.toString());
   }
 }
