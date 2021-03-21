@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 public class MyDeque<E>
 {
   private E[] data;
@@ -90,7 +91,14 @@ public class MyDeque<E>
   }
   public E removeFirst()
   {
-    
+    if (size == 0)
+    {
+      throw new NoSuchElementException("this deque is empty");
+    }
+    E removedThis = data[start];
+    start--;
+    size--;
+    return removedThis;
   }
 }
 
