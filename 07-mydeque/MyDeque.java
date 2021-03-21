@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+import java.util.Arrays;
 public class MyDeque<E>
 {
   private E[] data;
@@ -60,38 +61,26 @@ public class MyDeque<E>
   }
   private void resize()
   {
-    System.out.println(start);
-    System.out.println(end);
     @SuppressWarnings("unchecked")
-    E[] largerDeque = (E[])new Object[(data.length * 2) + 1]; //3
-    for (int i = 0; i <= start-1; i++)
-    {
-      largerDeque[i] = data[i];
-    }
-    int ending = end; //10
-    if (end == 0)
-    {
-      ending++;
-      end = largerDeque.length - ending; //2  
-      ending--;
-    }
-    else
-    {
-      end = largerDeque.length - ending; //11
-    }
-    for (int i = end; i < data.length; i++)
-    {
-      System.out.println(i);
-      System.out.println(largerDeque.length);
-      System.out.println(ending);
-      largerDeque[i+data.length+1] = data[ending];
-      ending++;
-    }
+    E[] largerDeque = (E[])new Object[(data.length * 2) + 1];
     if (data.length == 0)
     {
       start = 0;
       end = 0;
     }
+    for (int i = 0; i <= start-1; i++)
+    {
+      largerDeque[i] = data[i];
+    }
+    int oldLength = data.length-1;
+    int newEnding = largerDeque.length - 1;
+    for (int i = largerDeque.length - 1; oldLength > end; oldLength--)
+    {
+      largerDeque[i] = data[oldLength];
+      i--;
+      newEnding = i;
+    }
+    end = newEnding;
     data = largerDeque;
   }
   public E removeFirst()
@@ -141,6 +130,10 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
+    if (start == 0)
+    {
+      return data[end+1];
+    }
     return data[start-1];
   }
   public E getLast()
@@ -148,6 +141,10 @@ public class MyDeque<E>
     if (size == 0)
     {
       throw new NoSuchElementException("this deque is empty");
+    }
+    if (end == data.length - 1)
+    {
+      return data[start-1];
     }
     return data[end+1];
   }
