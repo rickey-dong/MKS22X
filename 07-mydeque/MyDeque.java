@@ -89,8 +89,8 @@ public class MyDeque<E>
     int indexOfLarger = 0;
     if (data.length != 0) //transplant the elements to the larger deque
     {
-      if (start >= end)
-      {
+      if (start >= end)                                // 3     9      6         ->    9    6   3    _   _   _  _
+      {                                                // e     s                      s        e    extra space
         for (int i = start; i < data.length; i++)
         {
           largerDeque[indexOfLarger] = data[i];
@@ -102,9 +102,9 @@ public class MyDeque<E>
           indexOfLarger++;
         }
       }
-      else
-      {
-        for (int i = start; i <= end; i++)
+      else                                              // 3     5      7       ->      3   5   7   _   _   _  _ 
+      {                                                 // s            e       ->      s      e     extra space
+      for (int i = start; i <= end; i++)
         {
           largerDeque[indexOfLarger] = data[i];
           indexOfLarger++;
