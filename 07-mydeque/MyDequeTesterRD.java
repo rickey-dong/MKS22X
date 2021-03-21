@@ -103,5 +103,9 @@ public class MyDequeTesterRD
     negative.addFirst(2);
     negative.addLast(5);
     System.out.println(negative.toString() + " should be {2, 5}");
+    MyDeque<Integer> zero = new MyDeque<Integer>(0);
+    zero.addFirst(2);
+    zero.addLast(5);
+    System.out.println(zero.toString() + " should be {2, 5}");
   }
 }
