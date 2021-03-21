@@ -99,9 +99,19 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    E removedThis = data[start];
-    start--;
-    size--;
+    E removedThis;
+    if (start != 0)
+    {
+      removedThis = data[start-1];
+      start--;
+      size--;
+    }
+    else
+    {
+      removedThis = data[data.length-end];
+      size--;
+      end++;
+    }
     return removedThis;
   }
   public E removeLast()
@@ -110,9 +120,18 @@ public class MyDeque<E>
     {
       throw new NoSuchElementException("this deque is empty");
     }
-    E removedThis = data[end];
-    end++;
-    size--;
+    E removedThis;
+    if (end != data.length -1)
+    {
+      removedThis = data[end+1];
+      end++;
+      size--;
+    }
+    else
+    {
+      removedThis = data[Math.abs(size-start)];
+      size--;
+    }
     return removedThis;
   }
   public E getFirst()
