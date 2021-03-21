@@ -127,6 +127,29 @@ public class MyDeque<E>
     }
     return data[end];
   }
+  public String toString()
+  {
+    String representation = "{";
+    for (int i = 0; i <= start; i++)
+    {
+      representation += data[i];
+      representation += ", ";
+    }
+    for (int i = end; i < data.length; i++)
+    {
+      if (i != data.length - 1)
+      {
+        representation += data[i];
+        representation += ", ";
+      }
+      else
+      {
+        representation += data[i];
+      }
+    }
+    representation += "}";
+    return representation;
+  }
 }
 
 
