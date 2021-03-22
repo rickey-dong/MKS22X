@@ -1,5 +1,4 @@
 import java.util.ArrayDeque;
-import java.util.Arrays;
 public class Calculator
 {
   public static double eval(String s)
