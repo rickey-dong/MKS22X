@@ -4,6 +4,10 @@ public class Calculator
 {
   public static double eval(String s)
   {
+    if (s.length() == 0)
+    {
+      throw new IllegalArgumentException("string is empty.");
+    }
     double result = 0.0;
     double term = 0.0;
     ArrayDeque<Double> calcStack = new ArrayDeque<Double>();
@@ -17,6 +21,10 @@ public class Calculator
       }
       else
       {
+        if (calcStack.size() <= 1)
+        {
+          throw new IllegalArgumentException(s + " has too few operands.");
+        }
         double secondTerm = calcStack.removeLast();
         double firstTerm = calcStack.removeLast();
         if (oper.equals("+"))
@@ -40,6 +48,10 @@ public class Calculator
           calcStack.addLast(firstTerm % secondTerm);
         }
       }
+    }
+    if (calcStack.size() > 1)
+    {
+      throw new IllegalArgumentException(s + " has too many operands.");
     }
     result = calcStack.removeLast();
     return result;
