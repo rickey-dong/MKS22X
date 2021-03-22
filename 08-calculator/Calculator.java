@@ -2,14 +2,36 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 public class Calculator
 {
-  public static void eval(String s)
+  public static double eval(String s)
   {
+    double result = 0.0;
+    double term = 0.0;
     ArrayDeque<Double> calcStack = new ArrayDeque<Double>();
     String[] operatorsAndOperands = s.split(" ");
-    for (String o : operatorsAndOperands)
+    for (String oper : operatorsAndOperands)
     {
-      System.out.println(o);
+      if (isNumeric(oper))
+      {
+        term = Double.parseDouble(oper);
+        calcStack.addLast(term);
+      }
+      else
+      {
+        double secondTerm = calcStack.removeLast();
+        double firstTerm = calcStack.removeLast();
+      }
     }
-    System.out.println(Arrays.toString(operatorsAndOperands));
+  }
+  public static boolean isNumeric(String str)
+  {
+    try
+    {
+      double d = Double.parseDouble(str);
+    }
+    catch(NumberFormatException e)
+    {
+      return false;
+    }
+    return true;
   }
 }
