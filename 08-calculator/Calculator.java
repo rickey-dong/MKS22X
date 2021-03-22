@@ -19,8 +19,30 @@ public class Calculator
       {
         double secondTerm = calcStack.removeLast();
         double firstTerm = calcStack.removeLast();
+        if (oper.equals("+"))
+        {
+          calcStack.addLast(firstTerm + secondTerm);
+        }
+        else if (oper.equals("-"))
+        {
+          calcStack.addLast(firstTerm - secondTerm);
+        }
+        else if (oper.equals("/"))
+        {
+          calcStack.addLast(firstTerm / secondTerm);
+        }
+        else if (oper.equals("*"))
+        {
+          calcStack.addLast(firstTerm * secondTerm);
+        }
+        else
+        {
+          calcStack.addLast(firstTerm % secondTerm);
+        }
       }
     }
+    result = calcStack.removeLast();
+    return result;
   }
   public static boolean isNumeric(String str)
   {
