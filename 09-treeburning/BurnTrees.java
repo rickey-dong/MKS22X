@@ -6,7 +6,7 @@ public class BurnTrees{
   private static int FIRE = 1;
   private static int ASH = 3;
   private static int SPACE = 0;
-
+  private static int FRESH_FIRE = -1;
 
   /*DO NOT UPDATE THIS
    *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
@@ -57,6 +57,51 @@ public class BurnTrees{
   public void tick(){
     ticks++;
     //YOU MUST IMPLEMENT THIS
+    for (int row = 0; row < this.map.length; row++)
+    {
+      for (int col = 0; col < this.map[row].length; col++)
+      {
+        if (this.map[row][col] == FIRE)
+        {
+          spreadFire(row, col); //spread current fires around
+          this.map[row][col] = ASH; //current fires extinguish
+        }
+      }
+    }
+    for (int row = 0; row < this.map.length; row++)
+    {
+      for (int col = 0; col < this.map[row].length; col++)
+      {
+        if (this.map[row][col] == FRESH_FIRE)
+        {
+          this.map[row][col] = FIRE; //converting the fresh fires to standard fires
+        }
+      }
+    }
+  }
+  
+  public void spreadFire(int r, int c)
+  {
+    //burn right
+    if (c+1 != this.map[r].length && this.map[r][c+1] == TREE)
+    {
+      this.map[r][c+1] = FRESH_FIRE;
+    }
+    //burn left
+    if (c-1 != -1 && this.map[r][c-1] == TREE)
+    {
+      this.map[r][c-1] = FRESH_FIRE;
+    }
+    //burn up
+    if (r-1 != -1 && this.map[r-1][c] == TREE)
+    {
+      this.map[r-1][c] = FRESH_FIRE;
+    }
+    //burn down
+    if (r+1 != this.map.length && this.map[r+1][c] == TREE)
+    {
+      this.map[r+1][c] = FRESH_FIRE;
+    }
   }
 
   /*
