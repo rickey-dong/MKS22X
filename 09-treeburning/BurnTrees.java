@@ -36,6 +36,17 @@ public class BurnTrees{
    */
   public boolean done(){
     //YOU MUST IMPLEMENT THIS
+    for (int row = 0; row < this.map.length; row++)
+    {
+      for (int col = 0; col < this.map[row].length; col++)
+      {
+        if (this.map[row][col] == FIRE)
+        {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
 
