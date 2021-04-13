@@ -7,14 +7,15 @@ public class BurnTrees{
   private static int ASH = 3;
   private static int SPACE = 0;
   private static int FRESH_FIRE = -1;
-
+  private static Frontier frontier;
   /*DO NOT UPDATE THIS
    *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
    */
   public int run(){
-    while(!done()){
-      tick();
-    }
+                  // while(!done()){
+                  //   tick();
+                  // }
+    tick();
     return getTicks();
   }
 
@@ -24,6 +25,7 @@ public class BurnTrees{
    */
   public BurnTrees(int width,int height, double density){
     map = new int[height][width];
+    frontier = new Frontier();
     for(int r=0; r<map.length; r++ )
       for(int c=0; c<map[r].length; c++ )
         if(Math.random() < density)
@@ -36,17 +38,18 @@ public class BurnTrees{
    */
   public boolean done(){
     //YOU MUST IMPLEMENT THIS
-    for (int row = 0; row < this.map.length; row++)
-    {
-      for (int col = 0; col < this.map[row].length; col++)
-      {
-        if (this.map[row][col] == FIRE)
-        {
-          return false;
-        }
-      }
-    }
-    return true;
+              // for (int row = 0; row < this.map.length; row++)
+              // {
+              //   for (int col = 0; col < this.map[row].length; col++)
+              //   {
+              //     if (this.map[row][col] == FIRE)
+              //     {
+              //       return false;
+              //     }
+              //   }
+              // }
+              // return true;
+    return frontier.size() == 0;
   }
 
 
@@ -55,27 +58,48 @@ public class BurnTrees{
    *new fires should remain fire, and not spread.
    */
   public void tick(){
-    ticks++;
     //YOU MUST IMPLEMENT THIS
-    for (int row = 0; row < this.map.length; row++)
+              // for (int row = 0; row < this.map.length; row++)
+              // {
+              //   for (int col = 0; col < this.map[row].length; col++)
+              //   {
+              //     if (this.map[row][col] == FIRE)
+              //     {
+              //       spreadFire(row, col); //spread current fires around
+              //       this.map[row][col] = ASH; //current fires extinguish
+              //     }
+              //   }
+              // }
+              // for (int row = 0; row < this.map.length; row++)
+              // {
+              //   for (int col = 0; col < this.map[row].length; col++)
+              //   {
+              //     if (this.map[row][col] == FRESH_FIRE)
+              //     {
+              //       this.map[row][col] = FIRE; //converting the fresh fires to standard fires
+              //     }
+              //   }
+              // }
+    int[] originalFire;
+    int row;
+    int col;
+    while (!done())
     {
-      for (int col = 0; col < this.map[row].length; col++)
+      ticks++;
+      System.out.println(frontier.size() + " is the size");
+      int numOfTimesToSpreadFire = frontier.size();
+      System.out.println(numOfTimesToSpreadFire + " is the num of times");
+      int iter = 0;
+      while (iter < numOfTimesToSpreadFire)
       {
-        if (this.map[row][col] == FIRE)
-        {
-          spreadFire(row, col); //spread current fires around
-          this.map[row][col] = ASH; //current fires extinguish
-        }
-      }
-    }
-    for (int row = 0; row < this.map.length; row++)
-    {
-      for (int col = 0; col < this.map[row].length; col++)
-      {
-        if (this.map[row][col] == FRESH_FIRE)
-        {
-          this.map[row][col] = FIRE; //converting the fresh fires to standard fires
-        }
+        originalFire = frontier.remove();
+        System.out.println(Arrays.toString(originalFire));
+        row = originalFire[0];
+        col = originalFire[1];
+        spreadFire(row, col);
+        this.map[row][col] = ASH;
+        iter++;
+        System.out.println(iter + " is the iter");
       }
     }
   }
@@ -83,24 +107,41 @@ public class BurnTrees{
   public void spreadFire(int r, int c)
   {
     //burn right
+    int[] newBurn = new int[2];
     if (c+1 != this.map[r].length && this.map[r][c+1] == TREE)
     {
-      this.map[r][c+1] = FRESH_FIRE;
+                  // this.map[r][c+1] = FRESH_FIRE;
+      newBurn[0] = r;
+      newBurn[1] = c+1;
+      this.map[r][c+1] = FIRE;
+      frontier.add(newBurn);
     }
     //burn left
     if (c-1 != -1 && this.map[r][c-1] == TREE)
     {
-      this.map[r][c-1] = FRESH_FIRE;
+                // this.map[r][c-1] = FRESH_FIRE;
+      newBurn[0] = r;
+      newBurn[1] = c-1;
+      this.map[r][c-1] = FIRE;
+      frontier.add(newBurn);
     }
     //burn up
     if (r-1 != -1 && this.map[r-1][c] == TREE)
     {
-      this.map[r-1][c] = FRESH_FIRE;
+            // this.map[r-1][c] = FRESH_FIRE;
+      newBurn[0] = r-1;
+      newBurn[1] = c;
+      this.map[r-1][c] = FIRE;
+      frontier.add(newBurn);
     }
     //burn down
     if (r+1 != this.map.length && this.map[r+1][c] == TREE)
     {
-      this.map[r+1][c] = FRESH_FIRE;
+            // this.map[r+1][c] = FRESH_FIRE;
+      newBurn[0] = r+1;
+      newBurn[1] = c;
+      this.map[r+1][c] = FIRE;
+      frontier.add(newBurn);
     }
   }
 
@@ -110,9 +151,16 @@ public class BurnTrees{
   public void start(){
     //If you add more instance variables you can add more here,
     //otherwise it is complete.
+    int[] locationOfCell = new int[2];
+    locationOfCell[1] = 0;
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
+        locationOfCell[0] = i;
+        System.out.println(Arrays.toString(locationOfCell));
+        System.out.println(frontier.toString());
+        frontier.add(locationOfCell);
+        System.out.println(frontier.toString());
       }
     }
   }
@@ -203,8 +251,8 @@ public class BurnTrees{
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
-
-    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+    System.out.println(frontier.toString());
+    //System.out.println(b.animate(DELAY));//animate all screens and print the final answer
     //System.out.println(b.outputAll());//print all screens and the final answer
   }
 

@@ -1,7 +1,7 @@
 import java.util.*;
 public class Frontier
 {
-  private Queue<int[]> frontier;
+  private ArrayDeque<int[]> frontier;
   public Frontier()
   {
     frontier = new ArrayDeque<>();
@@ -12,10 +12,22 @@ public class Frontier
   }
   public void add(int[] location)
   {
-    frontier.add(location);
+    frontier.addLast(location);
   }
   public int[] remove()
   {
-    return frontier.remove();
+    return frontier.removeFirst();
+  }
+  public String toString()
+  {
+    String rep = "[";
+    int iter = 0;
+    for (int[] elem : frontier)
+    {
+      rep += Arrays.toString(elem);
+      rep += ",";
+    }
+    rep += "]";
+    return rep;
   }
 }
