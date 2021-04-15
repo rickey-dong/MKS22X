@@ -151,16 +151,12 @@ public class BurnTrees{
   public void start(){
     //If you add more instance variables you can add more here,
     //otherwise it is complete.
-    int[] locationOfCell = new int[2];
-    locationOfCell[1] = 0;
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
-        locationOfCell[0] = i;
-        System.out.println(Arrays.toString(locationOfCell));
-        System.out.println(frontier.toString());
-        frontier.add(locationOfCell);
-        System.out.println(frontier.toString());
+        System.out.println(frontier);
+        frontier.add(new int[] {i, 0});
+        System.out.println(frontier);
       }
     }
   }
