@@ -86,20 +86,16 @@ public class BurnTrees{
     while (!done())
     {
       ticks++;
-      System.out.println(frontier.size() + " is the size");
       int numOfTimesToSpreadFire = frontier.size();
-      System.out.println(numOfTimesToSpreadFire + " is the num of times");
       int iter = 0;
       while (iter < numOfTimesToSpreadFire)
       {
         originalFire = frontier.remove();
-        System.out.println(Arrays.toString(originalFire));
         row = originalFire[0];
         col = originalFire[1];
         spreadFire(row, col);
         this.map[row][col] = ASH;
         iter++;
-        System.out.println(iter + " is the iter");
       }
     }
   }
@@ -107,41 +103,32 @@ public class BurnTrees{
   public void spreadFire(int r, int c)
   {
     //burn right
-    int[] newBurn = new int[2];
     if (c+1 != this.map[r].length && this.map[r][c+1] == TREE)
     {
                   // this.map[r][c+1] = FRESH_FIRE;
-      newBurn[0] = r;
-      newBurn[1] = c+1;
       this.map[r][c+1] = FIRE;
-      frontier.add(newBurn);
+      frontier.add(new int[] {r, c+1});
     }
     //burn left
     if (c-1 != -1 && this.map[r][c-1] == TREE)
     {
                 // this.map[r][c-1] = FRESH_FIRE;
-      newBurn[0] = r;
-      newBurn[1] = c-1;
       this.map[r][c-1] = FIRE;
-      frontier.add(newBurn);
+      frontier.add(new int[] {r, c-1});
     }
     //burn up
     if (r-1 != -1 && this.map[r-1][c] == TREE)
     {
             // this.map[r-1][c] = FRESH_FIRE;
-      newBurn[0] = r-1;
-      newBurn[1] = c;
       this.map[r-1][c] = FIRE;
-      frontier.add(newBurn);
+      frontier.add(new int[] {r-1, c});
     }
     //burn down
     if (r+1 != this.map.length && this.map[r+1][c] == TREE)
     {
             // this.map[r+1][c] = FRESH_FIRE;
-      newBurn[0] = r+1;
-      newBurn[1] = c;
       this.map[r+1][c] = FIRE;
-      frontier.add(newBurn);
+      frontier.add(new int[] {r+1, c});
     }
   }
 
@@ -154,9 +141,7 @@ public class BurnTrees{
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
-        System.out.println(frontier);
         frontier.add(new int[] {i, 0});
-        System.out.println(frontier);
       }
     }
   }
@@ -247,8 +232,7 @@ public class BurnTrees{
     }
     BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
 
-    System.out.println(frontier.toString());
-    //System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+    System.out.println(b.animate(DELAY));//animate all screens and print the final answer
     //System.out.println(b.outputAll());//print all screens and the final answer
   }
 
