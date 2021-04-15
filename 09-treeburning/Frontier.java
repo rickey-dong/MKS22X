@@ -18,16 +18,4 @@ public class Frontier
   {
     return frontier.removeFirst();
   }
-  public String toString()
-  {
-    String rep = "[";
-    int iter = 0;
-    for (int[] elem : frontier)
-    {
-      rep += Arrays.toString(elem);
-      rep += ",";
-    }
-    rep += "]";
-    return rep;
-  }
 }

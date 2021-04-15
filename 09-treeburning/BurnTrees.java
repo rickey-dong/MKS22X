@@ -15,7 +15,10 @@ public class BurnTrees{
                   // while(!done()){
                   //   tick();
                   // }
-    tick();
+    while (!done())
+    {
+      tick();
+    }
     return getTicks();
   }
 
