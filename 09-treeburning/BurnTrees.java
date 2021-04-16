@@ -6,7 +6,7 @@ private static int TREE = 2;
 private static int FIRE = 1;
 private static int ASH = 3;
 private static int SPACE = 0;
-private static Frontier frontier;
+private Frontier frontier;
 /*DO NOT UPDATE THIS
  *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
  */
@@ -254,10 +254,11 @@ public static void main(String[]args)  throws InterruptedException{
   }
   BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
   //long start = System.currentTimeMillis();
-  //long totalSteps = b.run();
+  long totalSteps = b.run();
+  totalSteps += b.run();
   //long totalTime = System.currentTimeMillis()-start;
-  //System.out.println(totalTime);
-  System.out.println(b.animate(DELAY));//animate all screens and print the final answer
+  System.out.println(totalSteps);
+  //System.out.println(b.animate(DELAY));//animate all screens and print the final answer
   //System.out.println(b.outputAll());//print all screens and the final answer
 }
 
