@@ -29,7 +29,11 @@ public static int test6(int max){
   ArrayDeque<Integer>b = new ArrayDeque<Integer>();
 
   for(int i = 0; i < max; i++){
+    System.out.println(a.toString() + " is MyDeque");
+    System.out.println(a.size() + " is the size");
+    System.out.println(b.toString() + " is the correct deque");
     int op = (int)(Math.random()*4);
+    System.out.println(op + " is the op");
     if(op == 0){
       a.addLast(i);
       b.addLast(i);
@@ -58,6 +62,9 @@ public static int test6(int max){
         b.removeFirst();
       }
     }
+    System.out.println(a.getStart() + " is the start index");
+    System.out.println(a.getEnd() + " is the end index");
+    System.out.println("================================");
   }
   if( equals(a,b) ){
     return 1;
@@ -67,7 +74,7 @@ public static int test6(int max){
 }
   public static void main(String[] args)
   {
-    System.out.println(test6(10));
+    System.out.println(test6(500000));
   //   MyDeque<Integer> numbers = new MyDeque<Integer>(4);
   //   System.out.println(numbers.size() + " should be 0");
   //   System.out.println(numbers.toString() + " should be {}");
