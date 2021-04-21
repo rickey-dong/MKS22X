@@ -34,6 +34,15 @@ public class MyDeque<E>
   {
     return this.size; //return size
   }
+  //debugging purposes
+  public int getStart()
+  {
+    return this.start;
+  }
+  public int getEnd()
+  {
+    return this.end;
+  }
   public void addFirst(E element)
   {
     if (element == null)
@@ -128,7 +137,7 @@ public class MyDeque<E>
       throw new NoSuchElementException("this deque is empty"); //can't remove thin air
     }
     E removedThis = data[start]; //you're not actually removing it, just ignoring it
-    if (size != -1) //but if size IS 1, just decrease size and ignore that removed one
+    if (size != 1) //but if size IS 1, just decrease size and ignore that removed one
     {
       if (start == data.length - 1) // once you remove the head at the very end, wrap around so that the head is now at the beginning
       {
@@ -149,7 +158,7 @@ public class MyDeque<E>
       throw new NoSuchElementException("this deque is empty"); //can't remove thin air
     }
     E removedThis = data[end]; //"remove"
-    if (size != -1) //just decrease the size if it is size 1
+    if (size != 1) //just decrease the size if it is size 1
     {
       if (end == 0) //if tail was at beginning, wrap around so new tail is at the very end
       {
