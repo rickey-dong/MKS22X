@@ -1,6 +1,6 @@
 public class MyHeap
 {
-  public static void pushDown(int[] data, int size, int index)
+  private static void pushDown(int[] data, int size, int index)
   {
     if (index < size/2 //if it is NOT a leaf (b/c 50% of tree are leaves) AND
         && (data[index] < data[(index * 2) + 1] //not bigger than left child OR
@@ -22,6 +22,13 @@ public class MyHeap
         data[(index * 2) + 1] = swap;
         pushDown(data, size, (index * 2) + 1);
       }
+    }
+  }
+  public static void buildHeap(int[] data)
+  {
+    for (int currentIndex = data.length-1; currentIndex >= 0; currentIndex--)
+    {
+      pushDown(data, data.length, currentIndex);
     }
   }
 }
