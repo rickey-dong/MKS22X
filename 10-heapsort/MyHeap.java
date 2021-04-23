@@ -1,6 +1,6 @@
 public class MyHeap
 {
-  private static void pushDown(int[] data, int size, int index)
+  public static void pushDown(int[] data, int size, int index)
   {
     if (index < size/2 //if it is NOT a leaf (b/c 50% of tree are leaves) AND
         && (data[index] < data[(index * 2) + 1] //not bigger than left child OR
