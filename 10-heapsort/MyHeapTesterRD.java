@@ -38,5 +38,19 @@ public class MyHeapTesterRD
     System.out.println(Arrays.toString(testC) + " should be [60, 80, 50, 30, 40]");
     MyHeap.pushDown(testC, 5, 0);
     System.out.println(Arrays.toString(testC) + " should be [80, 60, 50, 30, 40]");
+    
+    int[] testD = {1, 3, 6, 5, 9};
+    /*
+          1
+        3   6
+      5 9  
+    */
+    MyHeap.buildHeap(testD);
+    /*
+          9
+        5   6
+      1 3
+    */
+    System.out.println(Arrays.toString(testD) + " should be [9, 5, 6, 1, 3]");
   }
 }
