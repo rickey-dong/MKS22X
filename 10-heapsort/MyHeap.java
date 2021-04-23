@@ -27,6 +27,9 @@ public class MyHeap
       }
       else
       {
+        int swap = data[index];
+        data[index] = data[(index * 2) + 1];
+        data[(index * 2) + 1] = swap;
         pushDown(data, size, (index * 2) + 1);
       }
     }
