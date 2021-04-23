@@ -52,5 +52,5 @@ public class MyHeapTesterRD
       1 3
     */
     System.out.println(Arrays.toString(testD) + " should be [9, 5, 6, 1, 3]");
-  }
+  } 
 }
