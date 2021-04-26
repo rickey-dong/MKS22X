@@ -1,6 +1,6 @@
 public class MyHeap
 {
-  public static void pushDown(int[] data, int size, int index)
+  private static void pushDown(int[] data, int size, int index)
   {
     if ((index * 2) + 1 < size) //if it is NOT a leaf b/c you have at least one child, the left one
     {
@@ -38,11 +38,42 @@ public class MyHeap
       }
     }
   }
-  public static void buildHeap(int[] data)
+  private static void buildHeap(int[] data)
   {
     for (int currentIndex = data.length-1; currentIndex >= 0; currentIndex--)
     {
       pushDown(data, data.length, currentIndex);
     }
   }
+  private static void remove(int[] data, int size)
+  {
+    int swap = data[0];
+    data[0] = data[size-1];
+    data[size-1] = swap;
+    pushDown(data, size-1, 0);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
