@@ -31,7 +31,10 @@ public class Cow {
     ellipse(x, y, radius*2, radius*2);
     if (selected)
     {
-      
+      fill(255);
+      stroke(255);
+      circle(this.x + (this.radius/2), this.y - (this.radius/2), this.radius/3);
+      circle(this.x - (this.radius/2), this.y - (this.radius/2), this.radius/3);
     }
   }
 
