@@ -27,7 +27,14 @@ public class Cow {
   }
   void display() {
     noStroke();
-    fill(c);
+    if (colliding)
+    {
+      fill(255,0,0,30);
+    }
+    else
+    {
+      fill(c);
+    }
     ellipse(x, y, radius*2, radius*2);
     if (selected)
     {
