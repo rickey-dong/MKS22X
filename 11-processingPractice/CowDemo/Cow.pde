@@ -2,7 +2,7 @@ public class Cow {
   float x, y, dx, dy, radius;
   color c;
   boolean colliding;
-  boolean selected;
+  boolean selected = false;
 
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
@@ -29,14 +29,16 @@ public class Cow {
     stroke(0);
     fill(c);
     ellipse(x, y, radius*2, radius*2);
-    
+    if (selected)
+    {
+      
+    }
   }
 
   void click(){
     if (dist(mouseX, mouseY, this.x, this.y) <= this.radius)
     {
-      this.c = 0;
-      selected = true;
+      selected = !selected;
     }
   }
   
