@@ -53,9 +53,12 @@ public class Cow {
     colliding = false;
     for (Cow c : others)
     {
-      if (dist(this.x, this.y, c.x, c.y) <= this.radius + c.radius)
+      if (!this.equals(c))
       {
-        colliding = true;
+        if (dist(this.x, this.y, c.x, c.y) <= this.radius + c.radius)
+        {
+          colliding = true;
+        }
       }
     }
   }
