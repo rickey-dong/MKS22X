@@ -1,8 +1,9 @@
 ArrayList<Cow> particles;
 void setup() {
+  frameRate(30);
   size(1000, 800);
   particles = new ArrayList<Cow>();
-  for (int i = 0; i < 100; i++)
+  for (int i = 0; i < 600; i++)
     particles.add(new Cow());
 }
 

@@ -26,7 +26,7 @@ public class Cow {
     if (y >= height - radius || y <= radius) dy *= -1;
   }
   void display() {
-    stroke(0);
+    noStroke();
     fill(c);
     ellipse(x, y, radius*2, radius*2);
     if (selected)
