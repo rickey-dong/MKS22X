@@ -39,5 +39,17 @@ public class Cow {
       selected = true;
     }
   }
+  
+  void collide(ArrayList<Cow> others)
+  {
+    colliding = false;
+    for (Cow c : others)
+    {
+      if (dist(this.x, this.y, c.x, c.y) <= this.radius + c.radius)
+      {
+        colliding = true;
+      }
+    }
+  }
 
 }
