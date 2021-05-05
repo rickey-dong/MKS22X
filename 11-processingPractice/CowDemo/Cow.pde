@@ -1,6 +1,8 @@
 public class Cow {
   float x, y, dx, dy, radius;
   color c;
+  boolean colliding;
+  boolean selected;
 
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
@@ -34,6 +36,7 @@ public class Cow {
     if (dist(mouseX, mouseY, this.x, this.y) <= this.radius)
     {
       this.c = 0;
+      selected = true;
     }
   }
 
