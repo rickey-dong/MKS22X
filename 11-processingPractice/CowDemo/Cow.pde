@@ -35,6 +35,9 @@ public class Cow {
       stroke(255);
       circle(this.x + (this.radius/2), this.y - (this.radius/2), this.radius/3);
       circle(this.x - (this.radius/2), this.y - (this.radius/2), this.radius/3);
+      fill(0);
+      textSize(16);
+      text("dx: "+this.dx+"\n"+"dy: "+this.dy, this.x+this.radius, this.y);
     }
   }
 
