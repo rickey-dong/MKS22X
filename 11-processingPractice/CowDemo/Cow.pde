@@ -77,5 +77,12 @@ public class Cow {
       }
     }
   }
-
+  void turn(float angle)
+  {
+    float velocity = (float) Math.sqrt((dx*dx)+(dy*dy));
+    float ang = degrees(atan2(dy,dx));
+    ang -= angle;
+    dx = velocity * cos(radians(ang));
+    dy = velocity * sin(radians(ang));
+  }
 }
