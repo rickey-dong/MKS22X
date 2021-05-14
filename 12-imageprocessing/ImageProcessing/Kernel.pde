@@ -11,4 +11,8 @@ class Kernel
       }
     }
   }
+  color calcNewColor(PImage img, int x, int y)
+  {
+    return color(0);
+  }
 }
