@@ -10,7 +10,7 @@ class Kernel
     //    kernel[i][j] = init[i][j];
     //  }
     //}
-    kernel = init;
+    //kernel = init;
   }
   color calcNewColor(PImage img, int x, int y)
   {
