@@ -16,7 +16,7 @@ public class Kernel
   {
     if (x == 0 || x == img.width - 1 || y == 0 || y == img.height - 1)
     {
-      return color(44);
+      return color(0);
     }
     else
     {
